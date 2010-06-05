@@ -249,6 +249,11 @@ June 2010}}}
   \titlepage
 \end{frame}
 
+\begin{frame}{Outline of the talk}
+\tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 \begin{frame}{Linear and nonlinear waves}
@@ -897,7 +902,7 @@ is in fact smooth and is a classical solution of
 \end{align*}
 \end{frame}
 
-\section{Mountain pass geometry}
+\subsection{Mountain pass geometry}
 \begin{frame}
 \frametitle{Equilibrium point: a mountain pass}
 \includegraphics[width=0.9\textwidth]<1>{images/mountain_pass_1.jpg}
@@ -933,7 +938,6 @@ maximal height smaller then $H$, a contradiction.
 \end{proof}
 \end{frame}
 
-%\subsection{Deformation lemma: existence of steepest descent flow}
 \begin{frame}
 \frametitle{Deformation lemma}
 \begin{lemma}
@@ -965,7 +969,7 @@ which
 
 \item<3-> Locally Lipschitz vector field ${\color{blue}X}(x) = - \frac{h'(x)}{|h'(x)|^2} g(x)$.
 \begin{itemize}
-\item Picard-Lindelöf Theorem $\implies$ $X$ defines a unique continuous flow $\eta$.
+\item Picard-Lindel\"of Theorem $\implies$ $X$ defines a unique continuous flow $\eta$.
 \item $X$ bounded $\implies$ the flow $\eta$ exists for all times.
 \item ${\color{blue} X} h|_{\color{magenta} B} = -1$.
 \end{itemize}
@@ -998,8 +1002,8 @@ which
 
 \uncover<3->{
 \begin{proof}
-Use a cutoff function which satisfies
 \[
+\text{Use a cutoff function which satisfies}
 \phi(x) =
 \begin{cases}
 1, & \dist(x, S) \leq 2\\
@@ -1015,11 +1019,7 @@ where needed.
 }
 \end{frame}
 
-\section{Lagrange functional with mountain pass structure}
-\begin{frame}
-\frametitle{Outline} \tableofcontents[currentsection]
-\end{frame}
-
+\subsection{Lagrange functional with mountain pass structure}
 \begin{frame}
 \frametitle{A version of the Lagrange functional with mountain pass
 structure} $\tilde J_\beta$ doesn't have the mountain pass
@@ -1611,7 +1611,7 @@ point of $J_\beta$.
         \epsfig{file=images/Fig4Inventiones21.pdf, scale=0.3}\caption{Proper and bounded relative braid class.}
         \end{figure}
 \end{frame}
-\begin{frame}{Homotopy braid index}\pause
+\begin{frame}{Homotopy braid index}
     \begin{block}{as Conley index of the braid class}\pause
         Choose any $\mathscr R$ which fixes $\vv$. Define $\mathscr E$
         to be those braids on the boundary of $[\vu rel \vv]$ along
@@ -1661,7 +1661,7 @@ point of $J_\beta$.
     \end{enumerate}
     \end{thm}
 \end{frame}
-\begin{frame}{Applications}\pause
+\begin{frame}{Applications}
     \begin{block}{Second order Lagrangians}
         Consider a {\em second order Lagrangian\/} $L=L(u, u_x,
         u_{xx})$, such as found in Swift-Hohenberg equations:
@@ -1676,7 +1676,7 @@ point of $J_\beta$.
         three manifold.
     \end{block}
 \end{frame}
-\begin{frame}{When the compactness is lost!}\pause
+\begin{frame}{When the compactness is lost!}
     \begin{block}{Symplectic references}
         This problem is extremely delicate, requiring refined techniques
         as pseudoholomorphic curves (as developed by Gromov and Hofer)
