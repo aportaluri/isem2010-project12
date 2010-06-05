@@ -30,30 +30,20 @@ in head/foot}%
 %Dove serve: \insertlogo
 \usepackage{babel}
 \usepackage{hyperref}
-%\usepackage{latexsym}
-%\usepackage{a4wide}
-%\usepackage{amscd}
 \usepackage{color}
 \usepackage{amsmath}%center-tags centered tags at split
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{amsxtra}
-%\usepackage{pzorin}
 \usepackage{graphicx}
-%\usepackage{amsmath}
 \usepackage{amssymb}
-%\usepackage[svgnames]{xcolor}
-%\usepackage{psfrag}
 \usepackage[latin1]{inputenc}
 \usepackage{times}
-%\usepackage[usenames]{color}
 \usepackage[T1]{fontenc}
-% Theorem-style
-%\theoremstyle{plain}
-%\newtheorem{thm}{Theorem}
-%\newtheorem{prop}[thm]{Proposition}
-%\theoremstyle{remark}
-%\newtheorem*{remark}{Remark}
+\usepackage{mathrsfs}
+\usepackage{ifthen}
+\usepackage{xspace} %
+\usepackage{paper_diening}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{prop}[thm]{Proposition}
@@ -405,7 +395,7 @@ The importance of this equation is related to the study of water waves in presen
 
 \begin{frame}{Gerrida}
 \begin{figure}\label{fig:gerrida}
-        \includegraphics[width=0.9\textwidth]{images/Fig31Chardard2.pdf}
+        \includegraphics[width=0.8\textwidth]{images/Fig31Chardard2.pdf}
 \caption{Water-strider (Gerrida) taking advantage of surface tension
         to counterbalance gravity.}
         \end{figure}
@@ -1228,7 +1218,7 @@ point of $J_\beta$.
 
 \begin{frame}{Electricity in space}
 \begin{figure}\label{fig:nebula}
-        \epsfig{file=images/double-helix1-th.jpg, scale=0.3}\caption{Electric currents in space. The Double Helix nebula, located near
+        \includegraphics[height=0.7\textheight]{images/double-helix1-th.jpg}\caption{Electric currents in space. The Double Helix nebula, located near
         our own galactic center.}
         \end{figure}
 \end{frame}
@@ -1280,7 +1270,7 @@ point of $J_\beta$.
 %        drops by two in a neighborhood of $t_0$.}
 %        \end{figure}
         \begin{figure}\label{fig:tangencies_separation}
-        \epsfig{file=images/Fig15Wojcik2.pdf, scale=0.4}\caption{The local picture of the evolution of two solutions of
+        \includegraphics[width=0.9\textwidth]{images/Fig15Wojcik2.pdf}\caption{The local picture of the evolution of two solutions of
         a parabolic PDE that develop a tangency at $t_0$ [middle]. The number of intersections among the solutions
         drops by two in a neighborhood of $t_0$.}
         \end{figure}
@@ -1290,17 +1280,16 @@ point of $J_\beta$.
         Lifting $u^1$ and $u^2$ to the $(x,u, u_x)$-space, one recognize
         a braid structure as two solutions wind around each other.
         \begin{figure}\label{fig:lift}
-        \epsfig{file=images/Fig16Wojcik21.pdf, scale=0.3}\caption{Two solutions of a parabolic equation [left]. Their lift to
+        \includegraphics[width=0.35\textwidth]{images/Fig16Wojcik21.pdf}\caption{Two solutions of a parabolic equation [left]. Their lift to
         $(x,u,u_x)$-space [right].}
         \end{figure}
     \end{block}
 \end{frame}
 \begin{frame}{Conclusion}
-    \begin{block}{Evolution of the complexity}
+    \begin{block}{Evolution of the complexity} % TODO: what does the next sentence mean?
         Into the language of braid theory we can say that:\pause\\
-        {\color{blue}
-        {the evolution of the complexity of the braid corresponds to
-        those solutions cannot increase.}\/}
+        \alert{the evolution of the complexity of the braid corresponds to
+        those solutions cannot increase.}
     \end{block}
 \end{frame}
 \subsection{Topological and discretized braids and braids diagrams}
@@ -1309,7 +1298,7 @@ point of $J_\beta$.
         Intuitively it is clear what a braid is! It consists of several strings that are
         intertwined.\pause
         \begin{figure}\label{fig:shoes}
-        \epsfig{file=images/2774braiding_shoe.jpg, scale=0.3}\caption{Braiding shoes}
+        \includegraphics[width=0.9\textwidth]{images/2774braiding_shoe.jpg}\caption{Braiding shoes}
         \end{figure}
 \end{block}
 \end{frame}
@@ -1317,13 +1306,12 @@ point of $J_\beta$.
     \begin{block}{More precisely,}
         it is a collection of $n$ continuous curves
         $u^\alpha:[0,1] \hookrightarrow \R^3$, called
-        {\color{blue}{
-        strands}\/},\pause
+        \structure{strands}, \pause
         that are transversal to all planes parallel to one of the
         directions.\pause  For example we can assume $\partial u_1^\alpha>0$
         for all $\alpha$, where $u^\alpha=(u_1^\alpha, u_2^\alpha,
         u_3^\alpha)$.\pause Moreover, strands are assumed to have disjoint
-        images {\color{red}{(they do not intersect)}.\/}
+        images \alert{(they do not intersect)}.
     \end{block}\pause
     \begin{block}{Closed braids}
         This does not necessarily means that all strands are
@@ -1338,7 +1326,7 @@ point of $J_\beta$.
         $\vu:=\{u^1, \dots, u^n\}$.
         \end{notation}\pause
         \begin{figure}\label{fig:permutation}
-        \epsfig{file=images/Fig17Wojcik21.pdf, scale=0.2}\caption{Two conventions for presenting braids.
+        \includegraphics[width=0.4\textwidth]{images/Fig17Wojcik21.pdf}\caption{Two conventions for presenting braids.
         Horizontal- a braid on 5 strands consisting of two connected component [left]. Vertical- a braid on two strands
         (a single component)[right]. Both have the corresponding permutation indicated.}
         \end{figure}
@@ -1351,19 +1339,19 @@ point of $J_\beta$.
     \begin{block}{Equivalence relation}
         Two braids are equivalent if one can deform one into the other
         without creating any intersections along the path.\pause\\
-        \color{blue}{Thus a braid class is the equivalence class of isotopic
+        \alert{Thus a braid class is the equivalence class of isotopic
         braids.}
     \end{block}\pause
     \begin{oss}
         Two different braid classes on $n$ strands are necessary
         separated by the so-called \alert{singular braids},\pause i.e.
-        collections of curves that {\color{red}{do}\/} have intersections
+        collections of curves that \alert{do} have intersections
         among the strands.
     \end{oss}
 \end{frame}
 \begin{frame}
 \begin{figure}\label{fig:singular}
-        \epsfig{file=images/Fig18Wojcik.pdf, scale=0.3}\caption{Schematic picture of a braid class with two representatives indicated
+        \includegraphics[height=0.7\textheight]{images/Fig18Wojcik.pdf}\caption{Schematic picture of a braid class with two representatives indicated
         [left] and [right] and a singular one corresponding to a point on the boundary of the class [middle].}
         \end{figure}
 \end{frame}
@@ -1373,31 +1361,31 @@ point of $J_\beta$.
         otherwise) may be accomplished unambiguously by a labeled
         projection to the $(x,u)$-plane:
 
-        a {\color{red}{ braid diagram}\/}.\pause
+        a \structure{braid diagram}.\pause
 
         Any braid may be perturbed slightly so that pairs of strand
         crossings in the projection are transversal and disjoint.\pause
     \end{block}
         \begin{notation}
-        Then mark each crossings via (+) or (-) to indicate whether the
-        crossing is {\color{red}{bottom over top}\/} or {\em \color{red}{top over bottom}\/}
+        Then mark each crossing via (+) or (-) to indicate whether the
+        crossing is \structure{bottom over top} or \structure{top over bottom}
         respectively.\pause
 
-        {\color{blue}{Since we are dealing with Legendrian braids all crossings have
-        positive labels.}\/}
+        \structure{Since we are dealing with Legendrian braids all crossings have
+        positive labels.}
         \end{notation}
 \end{frame}
 \begin{frame}{Braids and their projections}
 \begin{figure}\label{fig:braiddiagram}
-        \epsfig{file=images/Fig16Wojcik21.pdf, scale=0.3}\caption{A braid on two strands [right]. The braid diagram (continuous
+        \includegraphics[width=0.9\textwidth]{images/Fig16Wojcik21.pdf}\caption{A braid on two strands [right]. The braid diagram (continuous
          representant of the class of the two dimensional projection of the braid) [right].}
         \end{figure}
 \end{frame}
 \begin{frame}{Topological transversality}
         \begin{block}{Definition}
             $\Omega^n$ denotes the space of all
-            {\color{blue}{closed positive braid diagrams on $n$ strands pairwise
-            transversal}\/}, i.e. the space of all pairs $(\vu, \tau)$ where $\tau$ is a permutation
+            \structure{closed positive braid diagrams on $n$ strands pairwise
+            transversal}, i.e. the space of all pairs $(\vu, \tau)$ where $\tau$ is a permutation
             over $n$ elements and $\vu=\{u^\alpha(x)\}_{\alpha=1}^n$ is an unordered collection of functions of
             Sobolev class $H^1$ satisfying:
             \begin{itemize}
@@ -1418,10 +1406,10 @@ point of $J_\beta$.
             If we allow the strands to intersect disregarding the
             second condition we obtain the closure
             $\overline \Omega^n$. Moreover the discriminant $\Sigma^n:= \overline \Omega^n \backslash \Omega^n$
-            defines the {\color{red}{ singular braid diagrams}\/}.\pause
+            defines the \alert{singular braid diagrams}.\pause
     \end{block}
         \begin{figure}\label{fig:discretized}
-            \epsfig{file=images/Fig2Kyoto2.pdf, scale=0.25}\caption{A discretized $\mathscr D_6^4$ (note: left and right
+            \includegraphics[width=0.35\textwidth]{images/Fig2Kyoto2.pdf}\caption{A discretized $\mathscr D_6^4$ (note: left and right
             hand sides are identified [left]; two types of singular discretized braids: a simple
             tangency and a high-order contact[right].}
         \end{figure}
@@ -1437,8 +1425,8 @@ point of $J_\beta$.
         \begin{enumerate}
         \item Each strand consists of $d+1$ anchor points: $\vu^\alpha=(u_0^\alpha, \dots u_d^\alpha)\in
         \R^{d+1}$;\pause
-        \item {\color{red}{(Periodicity)}\/}: $u_d^\alpha= u_0^{\tau(\alpha)}$;\pause
-        \item {\color{red}{(Transversality)}\/}: for any $\alpha\neq \alpha'$ such
+        \item \structure{Periodicity:} $u_d^\alpha= u_0^{\tau(\alpha)}$;\pause
+        \item \structure{Transversality:} for any $\alpha\neq \alpha'$ such
         that $u_i^\alpha=u_i^{\alpha'}$ for some $i$
         \[
         (u_{i-1}^\alpha - u_{i-1}^{\alpha'})(u_{i+1}^\alpha-
@@ -1453,32 +1441,31 @@ point of $J_\beta$.
             diagram $\vu$.
         \end{block}
        \begin{figure}\label{fig:PLdiagram}
-        \epsfig{file=images/Fig19Wojcik2.pdf, scale=0.4}\caption{A braid on two strands [left]. The braid diagram
+        \includegraphics[width=0.8\textwidth]{images/Fig19Wojcik2.pdf}\caption{A braid on two strands [left]. The braid diagram
         (Piecewise linear representant of the class of the two dimensional projection of the
         braid) [right].}
         \end{figure}
 \end{frame}
 \begin{frame}
         \begin{figure}\label{fig:fig1Inve}
-        \epsfig{file=images/Fig1Inventiones2.pdf, scale=0.5}\caption{Curves on the (x,u)-plane [left] lift to a braid [center]
+        \includegraphics[width=0.9\textwidth]{images/Fig1Inventiones2.pdf}\caption{Curves on the (x,u)-plane [left] lift to a braid [center]
         which is then discretized [right]. In a discrete isotopy, one slides the anchor points vertically.}
         \end{figure}
 \end{frame}
 \begin{frame}{Discretization}
     \begin{block}{DISC and PL}
         If $\vu \in \Omega^n$ the period $d$ discretization is
-        {\color{blue}{
+        \structure{
         \[
         DISC_d(\vu):={u^\alpha(i/d)}_i^\alpha
-        \]}\/}
-        \pause
+        \]}\pause
         Conversely, given a discrete braid $\vu\in \mathscr D_n^d$ we
         can associate a PL-braid diagram:\pause
-        {\color{red}{
+        \alert{
         \[
         PL(u^\alpha)(x):=u^\alpha_{\lfloor d\cdot x\rfloor}+ (d\cdot x-\lfloor d\cdot
         x\rfloor)(u^\alpha_{\lceil d\cdot x\rceil}-u^\alpha_{\lfloor d\cdot x\rfloor}).
-        \]}\/}
+        \]}
     \end{block}
 \end{frame}
 \begin{frame}{Back and Forth}
@@ -1496,25 +1483,25 @@ point of $J_\beta$.
 \subsection{Word length and linking number}
 \begin{frame}{Admissibility and length}\pause
     \begin{block}{Braiding data are lost if the discretization is too coarse}
-            A discretization period $d$ is {\color{blue}{admissible}\/} for
+            A discretization period $d$ is \structure{admissible} for
             $\vu \in \Omega^n$ if
             \[
             \{PL(DISC(\vu))\}=\{\vu\}.
             \]
         \end{block}\pause
         \begin{block}{The length}
-            The {\color{blue}{length}\/} of a topological braid $\vu\in \Omega^n$, denoted by
-            $\iota(\vu)$, \pause is defined to be the {\color{red}{total number of intersections
-            in the braid diagram}.\/} \pause If $\vu \in \mathscr D_d^n$ is  a
+            The \structure{length} of a topological braid $\vu\in \Omega^n$, denoted by
+            $\iota(\vu)$, \pause is defined to be the \alert{total number of intersections
+            in the braid diagram}. \pause If $\vu \in \mathscr D_d^n$ is  a
             discrete braid, then $\iota(\vu):=\iota(PL(\vu))$.
     \end{block}
 \end{frame}
 \begin{frame}{Singular discretized braids}
     \begin{block}{Discriminant}\pause
-    For {\color{blue}{topological braids}\/}, a {\color{red}{singular braid}\/} arises
-    when any strands intersect. \pause For a {\color{blue}{discretized
-    braid}\/}
-    $\vu$, the {\color{red}{singular braids}\/} are defined to be those braids at
+    For \structure{topological braids}, a \alert{singular braid} arises
+    when any strands intersect. \pause For a \structure{discretized
+    braid}
+    $\vu$, the \alert{singular braids} are defined to be those braids at
     which anchor points on two different strands coincide in a
     non-transverse fashion:\pause
     {\color{magenta}{
@@ -1553,8 +1540,8 @@ point of $J_\beta$.
     corresponds to the braids $\vu$ such that $\mathscr R_i(\vu)=0$
     for all $i$. \pause
 
-    {\color{blue}{The parabolic relation $\mathscr R$ induces a flow on $\mathscr D_d^n$ which
-    respects a braid-theoretic comparison principle}.\/}
+    \structure{The parabolic relation $\mathscr R$ induces a flow on $\mathscr D_d^n$ which
+    respects a braid-theoretic comparison principle}.
     \end{block}
 \end{frame}
 \begin{frame}{A crucial result}\pause
@@ -1567,14 +1554,14 @@ point of $J_\beta$.
         through zero.
     \end{block}
         \begin{figure}\label{fig:crossing}
-        \epsfig{file=images/Fig112Wojcik2.pdf, scale=0.3}\caption{Along the evolution of the parabolic flow crossing can be
+        \includegraphics[width=0.5\textwidth]{images/Fig112Wojcik2.pdf}\caption{Along the evolution of the parabolic flow crossing can be
         destroyed, not created.}
         \end{figure}
 \end{frame}
 \begin{frame}{Proof}
     \begin{block}{an idea}
     \begin{figure}\label{fig:idea}
-        \epsfig{file=images/Fig2Inventiones2.pdf, scale=0.3}\caption{A schematic picture of a parabolic flow on
+        \includegraphics[width=0.7\textwidth]{images/Fig2Inventiones2.pdf}\caption{A schematic picture of a parabolic flow on
         a braid class. $\Sigma$ denotes the set of singular braids (boundary of the class). A parabolic flow on a discretized
         braid class is transverse to the boundary faces. The local linking of strands decreases strictly along the
         flowlines at a singular braid $\vu$.}
@@ -1589,22 +1576,22 @@ point of $J_\beta$.
         which have $\vv$ has sub-braid.
         \end{block}\pause
     \begin{block}{Properness and boundedness}\pause
-        The discretized relative braid class $[\vu rel \vv]$ is {\color{red}{proper}\/}
+        The discretized relative braid class $[\vu rel \vv]$ is \alert{proper}
         if no free strands of $\vu$ can collapse onto $\vv$ or onto each
         other.\pause \\
-        It is {\color{red}{bounded}\/} if there exists a uniform bound on all
+        It is \alert{bounded} if there exists a uniform bound on all
         representatives $\vu$ of the equivalence class, i.e. if $\{\vu
         rel \vv\}$ is a bounded set in $\bar \Omega^n$.
     \end{block}
 \end{frame}
 \begin{frame}{Picture...}
 \begin{figure}\label{fig:improper_Bounded}
-        \epsfig{file=images/Fig4Inventiones22.pdf, scale=0.3}\caption{Improper and bounded relative braid class.}
+        \includegraphics[width=0.7\textwidth]{images/Fig4Inventiones22.pdf}\caption{Improper and bounded relative braid class.}
         \end{figure}
 \end{frame}
 \begin{frame}{...One more picture}
 \begin{figure}\label{fig:proper_Bounded}
-        \epsfig{file=images/Fig4Inventiones21.pdf, scale=0.3}\caption{Proper and bounded relative braid class.}
+        \includegraphics[width=0.7\textwidth]{images/Fig4Inventiones21.pdf}\caption{Proper and bounded relative braid class.}
         \end{figure}
 \end{frame}
 \begin{frame}{Homotopy braid index}
@@ -1631,7 +1618,7 @@ point of $J_\beta$.
 \end{frame}
 \begin{frame}{An example}
 \begin{figure}\label{fig:example}
-        \epsfig{file=images/Fig5Inventiones2.pdf, scale=0.3}\caption{The braid in this Example [left]
+        \includegraphics[width=0.9\textwidth]{images/Fig5Inventiones2.pdf}\caption{The braid in this Example [left]
         and the assocaited configuration space with parabolic flow [middle]. On the right is an expanded view
          of $\mathscr D_2^1 rel \vv$ where the fixed points of the flow correspond to the four fixed strands in the
          skeleton $\vv$. The braid class adjacent to these fixed points are not proper.}
