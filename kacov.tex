@@ -224,7 +224,7 @@ in head/foot}%
 }
 
 \title[Stationary solutions for Kawahara diffusion equation]
-{Isem project 12}
+{ISEM project 12}
 
 \subtitle {Stationary solutions and their oscillating
 properties for the Kawahara diffusion equation} % (optional)
@@ -235,12 +235,11 @@ Dipartimento di Matematica ``Ennio De Giorgi'', Universit\`a del
 Salento, P.O.B.193, 73100, Lecce, Italy.}}\\
 {\alert{alessandro.portaluri@unisalento.it}}}
 %alessandro.portaluri@unisalento.it}
-\institute{Isem team for project 12:
+\institute{Team
 \begin{itemize}
-\item {\structure{Daniel Lengeler (Freiburg)}
-\texttt{daniel.lengeler@mathematik.uni-freiburg.de}}
-\item {\structure{Pavel Zorin-Kranich (Pisa/Tuebingen)} \texttt{pavel.zorin@online.de}}
-\item{ \structure{Wei He (Columbia)} \texttt{whgp7@mail.mizzou.edu}}
+\item {\structure{Daniel Lengeler (Freiburg)} \texttt{daniel.lengeler@mathematik.uni-freiburg.de}}
+\item {\structure{Pavel Zorin-Kranich (Pisa/T\"ubingen)} \texttt{pavel.zorin@online.de}}
+\item{\structure{Wei He (Columbia)} \texttt{whgp7@mail.mizzou.edu}}
 \end{itemize}
 {\centerline{13th Internet Seminar on Gradient Systems, Kacov, 13-19
 June 2010}}}
@@ -258,59 +257,60 @@ June 2010}}}
 \section{Introduction}
 \begin{frame}{Linear and nonlinear waves}
     \begin{block}{}
-        Two phenomena can destroy wave packets in \pause
-
-        {\color{red}{linear waves in homogeneous medium,}\/}
-    \end{block}\pause
-    \begin{block}{Dissipation and Dispersion}\pause
+        Two phenomena can destroy wave packets in a \alert{homogeneous medium}:\pause
         \begin{itemize}
-        \item {\color{blue}{Dissipation}\/}\pause: Fourier components are damped.\pause
-        \item {\color{blue}{Dispersion}\/}\pause: Fourier components of the wave do not travel at
+        \item {\structure{Dissipation}}: Fourier components are damped.\pause
+        \item {\structure{Dispersion}}: Fourier components of the wave do not travel at
         the same speed.
         \end{itemize}
     \end{block}\pause
     \begin{block}{Linear theory leads to the conclusion that}\pause
-        localized solutions traveling at a constant speed or solitary waves,
-        {\color{red}{cannot exist}\/} in a {\underline{dissipative or dispersive
-        medium.}\/}
+        localized solutions traveling at a constant speed or solitary waves\\
+        \alert{cannot exist} in a \alert{dissipative or dispersive medium.}
     \end{block}
 \end{frame}
-\begin{frame}
+\begin{frame}{Linear and nonlinear waves}
     \begin{block}{Nonlinear theory}\pause
-        ..solitary waves {\color{red}{occur}\/} in several areas such as
-        {\color{blue}{an-harmonic nonlinear lattices,}\/}\pause {\color{blue}{gas dynamic},\/}
-        \pause {\color{blue}{hydromagnetic waves}\/},\pause {\color{blue}{ion-acoustic waves in cold plasma and
-        hydrodynamics.}\/}\\\pause
-        \color{magenta}{In all these case the nonlinearity counteract the
-        dispersion.}
+        ..solitary waves \alert{occur} in several areas such as
+        \begin{itemize}
+        \item an-harmonic nonlinear lattices,\pause
+          \item gas dynamic,\pause
+            \item hydromagnetic waves,\pause
+              \item ion-acoustic waves in cold plasma,
+                \item hydrodynamics.
+        \end{itemize}
+        \pause
+        \alert{In all these case the nonlinearity counteracts dispersion.}
     \end{block}
 \end{frame}
+
 \begin{frame}{Aim of the project is to}
- investigate \pause {\color{red}{existence}\/},\pause {\color{red}{spectral
-stability}\/}\pause and a {\color{red}{topological forcing
-theory}\/} for the steady solutions of the Kawahara equation:\pause
+ investigate \pause
+\structure{existence}, \pause
+\structure{spectral stability} \pause and a
+\structure{topological forcing theory} \pause
+for the steady solutions of the Kawahara equation
 \[
-u_t=u_{xxxxx}-Pu_{xxx}-(u^{q+1})_x +c u_x, \qquad q \geq 1
+u_t=u_{xxxxx}-Pu_{xxx}-(u^{q+1})_x +c u_x, \qquad q \geq 1,
 \]
 %\[
 %\dfrac{\partial u}{\partial t}=\dfrac{\partial^5 u}{\partial
 %x^5}-P\dfrac{\partial^3 u}{\partial x^3}- \dfrac{\partial}{\partial
 %x}(u^{q+1})+ c \dfrac{\partial u}{\partial x}, \qquad q \geq 1
 %\]
-where $P$ and $ c$ are real parameters.\pause  The importance of
-this equation is related to the study of water waves in presence of
-capillarity.\pause
+where $P$ and $ c$ are real parameters.\pause
+The importance of this equation is related to the study of water waves in presence of capillarity.\pause
 
     \begin{block}{The steady part}
         \[
         u_{xxxx}-Pu_{xx} + cu -u^{q+1}=0.
         \]
     \end{block}\pause
-        It is also known as {\color{red}{Swift-Hohenberg
-        equation}\/} \pause or {\color{red}{extended Fisher-Kolmogorov
-        equation}\/} depending on the sign of the parameters
-        entering in the equation.
+        It is also known as \structure{Swift-Hohenberg
+        equation} \pause or \structure{extended Fisher-Kolmogorov
+        equation} depending on the sign of the parameters.
 \end{frame}
+
 \subsection{Spectral stability and symplectic invariants}
 \begin{frame}{About spectral stability}\pause
     \begin{block}{Solitary waves as homoclinic solutions}\pause
