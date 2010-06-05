@@ -2,8 +2,9 @@
 \mode<presentation>{
 %\usecolortheme[overlystylish]{albatross}
 \usetheme{Warsaw}
-\setbeamercovered{transparent} \setbeamertemplate{navigation
-symbols}{} \setbeamertemplate{footline}
+\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}
 {%
 \leavevmode%
 \hbox{%
@@ -40,9 +41,9 @@ in head/foot}%
 \usepackage[latin1]{inputenc}
 \usepackage{times}
 \usepackage[T1]{fontenc}
-\usepackage{mathrsfs}
-\usepackage{ifthen}
-\usepackage{xspace} %
+%\usepackage{mathrsfs}
+%\usepackage{ifthen}
+%\usepackage{xspace} %
 \usepackage{paper_diening}
 
 \newtheorem{thm}{Theorem}
@@ -1231,7 +1232,7 @@ point of $J_\beta$.
         u_t=f(x, u, u_x, u_{xx}); \ \ \textrm{where}\ \ 0<\lambda \leq
         \partial_{u_{xx}}f \leq \lambda^{-1} \textrm{uniformly}.
         \end{equation}\pause
-        Assume that $f$ is of smoothness class $\mathscr C^2$ and
+        Assume that $f$ is of smoothness class $C^2$ and
         for simplicity we consider only periodic boundary
         conditions. Hence $x \in S^1$.\pause \\
         We view \eqref{eq:Wei1} as an evolution equation on the
@@ -1292,14 +1293,12 @@ point of $J_\beta$.
     \end{block}
 \end{frame}
 \subsection{Topological and discretized braids and braids diagrams}
-\begin{frame}{Braid and... }
-    \begin{block}{What is a braid?}\pause
+\begin{frame}{What is a braid?}
         Intuitively it is clear what a braid is! It consists of several strings that are
-        intertwined.\pause
+        intertwined.
         \begin{figure}\label{fig:shoes}
         \includegraphics[width=0.6\textwidth]{images/2774braiding_shoe.jpg}\caption{Braiding shoes}
         \end{figure}
-\end{block}
 \end{frame}
 \begin{frame}{and in mathematics?}
     \begin{block}{More precisely,}
@@ -1408,7 +1407,7 @@ point of $J_\beta$.
             defines the \alert{singular braid diagrams}.\pause
     \end{block}
         \begin{figure}\label{fig:discretized}
-            \includegraphics[width=0.35\textwidth]{images/Fig2Kyoto2.pdf}\caption{A discretized $\mathscr D_6^4$ (note: left and right
+            \includegraphics[width=0.35\textwidth]{images/Fig2Kyoto2.pdf}\caption{A discretized $\mathcal{D}_6^4$ (note: left and right
             hand sides are identified [left]; two types of singular discretized braids: a simple
             tangency and a high-order contact[right].}
         \end{figure}
@@ -1416,7 +1415,7 @@ point of $J_\beta$.
 \begin{frame}{Discretized braid diagrams}
     \begin{block}{Definition}
         The space of {\em period $d$ discrete diagrams on $n$ strands\/}
-        denoted by $\mathscr D_d^n$ is the space of all pairs $(\vu,
+        denoted by $\mathcal{D}_d^n$ is the space of all pairs $(\vu,
         \tau)$, \pause where $\tau$ is a permutation on $n$ elements \pause and
         $\vu=\{u^\alpha\}_{\alpha=1}^n$ is an unordered collection of
         vectors $u^\alpha=(u_i^\alpha)_{i=0}^d$,\pause i.e. {\em strands\/}
@@ -1458,7 +1457,7 @@ point of $J_\beta$.
         \[
         DISC_d(\vu):={u^\alpha(i/d)}_i^\alpha
         \]}\pause
-        Conversely, given a discrete braid $\vu\in \mathscr D_n^d$ we
+        Conversely, given a discrete braid $\vu\in \mathcal{D}_n^d$ we
         can associate a PL-braid diagram:\pause
         \alert{
         \[
@@ -1491,7 +1490,7 @@ point of $J_\beta$.
         \begin{block}{The length}
             The \structure{length} of a topological braid $\vu\in \Omega^n$, denoted by
             $\iota(\vu)$, \pause is defined to be the \alert{total number of intersections
-            in the braid diagram}. \pause If $\vu \in \mathscr D_d^n$ is  a
+            in the braid diagram}. \pause If $\vu \in \mathcal{D}_d^n$ is  a
             discrete braid, then $\iota(\vu):=\iota(PL(\vu))$.
     \end{block}
 \end{frame}
@@ -1511,14 +1510,14 @@ For a \structure{discretized braid}
         0\right\}.
         \end{eqnarray*}
     \end{block}\pause
-    The set $\Sigma$ carves $\mathscr D_d^n$ into components which
+    The set $\Sigma$ carves $\mathcal{D}_d^n$ into components which
     are the discretized braid classes.
 \end{frame}
 \begin{frame}{Dynamics}
     \begin{block}{A parabolic relation}
-        of period $d$ is a sequence of maps $\mathscr R=\{\mathscr R_i:\R^3 \to
-        \R\}$, $i=1, \dots, d$, such that $\partial_1 \mathscr R_i >0$ and
-        $\partial_3 \mathscr R_i \geq 0$ for every $i$. \pause
+        of period $d$ is a sequence of maps $\mathcal{R}=\{\mathcal R_i:\R^3 \to
+        \R\}$, $i=1, \dots, d$, such that $\partial_1 \mathcal R_i >0$ and
+        $\partial_3 \mathcal R_i \geq 0$ for every $i$. \pause
         \end{block}
         \begin{block}{Applications}
         include discretization of uniform parabolic PDE's, as well
@@ -1528,25 +1527,25 @@ For a \structure{discretized braid}
 \begin{frame}{Braid-theoretic comparison principle}
     \begin{block}{Parabolic flow}
     Given a discretized braid $\vu=\{u_i^\alpha\}$ and a parabolic
-    relation $\mathscr R$, one evolves braid according to the
+    relation $\mathcal R$, one evolves braid according to the
     equation
     \[
-    \dfrac{d}{dt}(u_i^\alpha)= \mathscr R_i(u_{i-1}^\alpha, u_i^\alpha,
+    \dfrac{d}{dt}(u_i^\alpha)= \mathcal R_i(u_{i-1}^\alpha, u_i^\alpha,
     u_{i+1}^\alpha).
     \]
     \end{block}\pause
     \begin{block}{Stationary solutions}
-    corresponds to the braids $\vu$ such that $\mathscr R_i(\vu)=0$
+    corresponds to the braids $\vu$ such that $\mathcal R_i(\vu)=0$
     for all $i$. \pause
 
-    \structure{The parabolic relation $\mathscr R$ induces a flow on $\mathscr D_d^n$ which
+    \structure{The parabolic relation $\mathcal R$ induces a flow on $\mathcal D_d^n$ which
     respects a braid-theoretic comparison principle}.
     \end{block}
 \end{frame}
 \begin{frame}{A crucial result}\pause
     \begin{block}{The algebraic length is a Lyapunov function}
-        Let $\mathscr R$ be any parabolic relation and $\vu \in \Sigma$
-        any singular braid. Then the flowline $\vu(t)$ of $\mathscr R$
+        Let $\mathcal R$ be any parabolic relation and $\vu \in \Sigma$
+        any singular braid. Then the flowline $\vu(t)$ of $\mathcal R$
         passing through $\vu=\vu(0)$ leaves  a neighborhood of $\Sigma$
         in forward and backward time so as to strictly decrease the
         algebraic length of $\vu(t)$ in the braid group as $t$ passes
@@ -1570,7 +1569,7 @@ For a \structure{discretized braid}
 \subsection{Homotopic braid index as a Conley index}
 \begin{frame}{The index}
     \begin{block}{Relative discretized braids}
-        Given a period $d$ braid $\vv$, we denote by $\mathscr D_d^n
+        Given a period $d$ braid $\vv$, we denote by $\mathcal D_d^n
         rel\vv$ the space of all $n$ strands, period $d$ discretized braid
         which have $\vv$ has sub-braid.
         \end{block}\pause
@@ -1595,16 +1594,16 @@ For a \structure{discretized braid}
 \end{frame}
 \begin{frame}{Homotopy braid index}
     \begin{block}{as Conley index of the braid class}\pause
-        Choose any $\mathscr R$ which fixes $\vv$. Define $\mathscr E$
+        Choose any $\mathcal R$ which fixes $\vv$. Define $\mathcal E$
         to be those braids on the boundary of $[\vu rel \vv]$ along
-        which the evolution under the flow of $\mathscr R$ exits the
+        which the evolution under the flow of $\mathcal R$ exits the
         braid class.\pause
 
         The {\color{red}{homotopy braid index}\/} is defined to be the pointed homotopy
         class:\pause
         {\color{blue}{
         \[
-        \vh([\vu rel\vv]):=([\vu rel \vv]/\mathscr E, \{\mathscr E\}).
+        \vh([\vu rel\vv]):=([\vu rel \vv]/\mathcal E, \{\mathcal E\}).
         \]}\/}
     \end{block}
 \end{frame}
@@ -1619,7 +1618,7 @@ For a \structure{discretized braid}
 \begin{figure}\label{fig:example}
         \includegraphics[width=0.9\textwidth]{images/Fig5Inventiones2.pdf}\caption{The braid in this Example [left]
         and the assocaited configuration space with parabolic flow [middle]. On the right is an expanded view
-         of $\mathscr D_2^1 rel \vv$ where the fixed points of the flow correspond to the four fixed strands in the
+         of $\mathcal D_2^1 rel \vv$ where the fixed points of the flow correspond to the four fixed strands in the
          skeleton $\vv$. The braid class adjacent to these fixed points are not proper.}
         \end{figure}
 \end{frame}
@@ -1631,15 +1630,15 @@ For a \structure{discretized braid}
         braids.
     \end{thm}
     \begin{thm}{\color{red}{(A forcing result)}}
-    Let $\mathscr R$ be a parabolic relation such that:
+    Let $\mathcal R$ be a parabolic relation such that:
     \begin{enumerate}
     \item[(i)] {\color{blue}{gradient-type}\/};
     \item[(ii)] {\color{blue}{dissipative}\/} (roughly, that large solutions are {\em
-    repelled \/} from infinity). If $\mathscr R$ fixes a
+    repelled \/} from infinity). If $\mathcal R$ fixes a
     discretized braid $\vv$ which is not in the trivial braid class
     (that is, if it has any crossings whatsoever), then there are an
     infinite number of distinct braid classes for multiple periods
-    which arise as stationary solutions of $\mathscr R$.
+    which arise as stationary solutions of $\mathcal R$.
     \end{enumerate}
     \end{thm}
 \end{frame}
