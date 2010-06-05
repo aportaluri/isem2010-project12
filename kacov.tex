@@ -38,15 +38,10 @@ in head/foot}%
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{amsxtra}
-\usepackage{ifthen} %
-\usepackage{xspace} %
-\usepackage{paper_diening}
 %\usepackage{pzorin}
 \usepackage{graphicx}
 %\usepackage{amsmath}
-\usepackage{epsfig}
 \usepackage{amssymb}
-\usepackage{mathrsfs}
 %\usepackage[svgnames]{xcolor}
 %\usepackage{psfrag}
 \usepackage[latin1]{inputenc}
@@ -410,7 +405,8 @@ The importance of this equation is related to the study of water waves in presen
 
 \begin{frame}{Gerrida}
 \begin{figure}\label{fig:gerrida}
-        \epsfig{file=images/Fig31Chardard2.pdf, scale=0.3}\caption{Water-strider (Gerrida) taking advantage of surface tension
+        \includegraphics[width=0.9\textwidth]{images/Fig31Chardard2.pdf}
+\caption{Water-strider (Gerrida) taking advantage of surface tension
         to counterbalance gravity.}
         \end{figure}
 \end{frame}
@@ -426,7 +422,7 @@ The importance of this equation is related to the study of water waves in presen
    \item Higher order generalization of famous Korteweg-de Vries equation:\\ \hspace{2.5cm} $u_t + u_{xxx} + uu_x = 0$
    \item A model for (among others) propagation of low amplitude water waves in shallow canal, subject to gravity and
 capillarity
-   \item Hamiltonian system: solutions are orbits along the {\bf symplectic} gradient of
+   \item Hamiltonian system: solutions are orbits along the \structure{symplectic} gradient of
 energy $H$, ``symplectic gradient system''\\
 $\leadsto$ Conservation of energy, instead of dissipation
   \end{itemize}
@@ -434,7 +430,7 @@ $\leadsto$ Conservation of energy, instead of dissipation
 {\begin{bf} Reminder\end{bf}}: Vector space $V$, symplectic form $\omega$ on $V$, i.e.\\
 \vspace{0.15cm}
 \hspace{0.5cm} nondegenerate, skew-symmetric bilinear form (and $d\omega=0$),\\
-\vspace{0.15cm} functional $H: V\rightarrow \set R$. Define
+\vspace{0.15cm} functional $H: V\rightarrow \mathbb{R}$. Define
 $\omega(X_H,\cdot) := dH$.
 $$\leadsto u_t=X_H(u)$$
 \end{block}
@@ -443,7 +439,7 @@ $$\leadsto u_t=X_H(u)$$
 \begin{frame}
   \frametitle{Nonlinear Dispersive Equations}
   %\framesubtitle{Optional}
-Linear (nondissipative) wave type equations usually exhibit  {\bf dispersion}:\\
+Linear (nondissipative) wave type equations usually exhibit  \structure{dispersion}:\\
 \vspace{0.15cm}
 \hspace{0.25cm} Different Fourier components of a solution travel at different speeds.\\
 \vspace{0.15cm}
