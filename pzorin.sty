@@ -1,0 +1,164 @@
+% ============================-*- LaTeX -*-=============================
+%
+%   pzorin.sty -- macros to use everywhere
+%
+%   Requirements that may not be part of every TeX distribution:
+%   (1) The standard AMS math packages amsmath and amssymb.  These are
+%       absolutely vital to anyone who typesets mathematics of any
+%       kind.  If you don't have them, get them NOW!!
+%
+% ======================================================================
+\ProvidesPackage{pzorin}
+
+\RequirePackage{amsmath,amsthm}
+\RequirePackage{microtype}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+
+\newcommand{\myname}{Pavel Zorin-Kranich}
+
+% DeclareMathOperator without the repetition
+\newcommand {\DMO} [1]
+            {\expandafter\DeclareMathOperator\csname #1\endcsname
+              {#1}}
+
+\newcommand{\Kern}{\mathrm{Kern}}
+\newcommand{\Bild}{\mathrm{Bild}}
+\newcommand{\Lin}{\mathrm{Lin}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rp}{\ensuremath{\mathbb{R}_+}}
+\newcommand{\lin}{\mathrm{lin}}
+\newcommand{\border}{\partial}
+
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DMO{supp}
+\DMO{tr}
+\DMO{im}
+\DMO{grad}
+%\DeclareMathOperator{\deg}{deg}
+\DMO{id}
+\DMO{Id}
+\DMO{sg}
+\DMO{ord}
+\DMO{Quot}
+\DMO{Gal}
+%\DeclareMathOperator{\dim}{dim}
+\newcommand{\hol}[1]{\mathcal{H}(#1)}
+\newcommand{\Rang}[1]{\mathrm{Rang}\left(#1\right)}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\ggT}{\mathrm{ggT}}
+\newcommand{\kgV}{\mathrm{kgV}}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\z}{\bar z}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Ass}{\mathrm{Ass}}
+\newcommand{\Rad}{\mathrm{Rad}}
+
+% Nicer “Sum”, “Union” and “Intersection” symbols, capitals for big signs and properly placed limits, normal for inline use.
+\newcommand{\Union}{\bigcup\limits}
+\newcommand{\Intersection}{\bigcap\limits}
+\newcommand{\union}{\cup}
+\newcommand{\intersection}{\cap}
+\newcommand{\Sum}{\sum\limits}
+\newcommand{\Product}[1]{\prod\limits_{#1}}
+\newcommand{\Prod}{\prod\limits}
+
+\newcommand{\Meet}{\bigwedge\limits}
+\newcommand{\JOIN}{\bigvee\limits}
+\newcommand{\join}{\vee}
+\newcommand{\meet}{\wedge}
+
+\newcommand{\with}{\,:\,}
+\newcommand{\unit}[1]{\,\mathrm{#1}}
+
+%Differential d's
+\newcommand{\dif}{\text{d}}
+\newcommand{\tdif}[3][]{\frac{\dif^{ #1} #2}{\dif #3^{ #1}}}
+\newcommand{\ttdif}[2]{\frac{\dif^2 #1}{\dif #2 ^2}}
+\newcommand{\pdif}[3][]{\frac{\partial^{ #1} #2}{\partial #3^{ #1}}}
+\newcommand{\ppdif}[2]{\frac{\partial^{2} #1}{\partial #2^{2}}}
+
+\renewcommand\phi{\varphi}
+\renewcommand\epsilon{\varepsilon}
+
+\newcommand{\BMO}{\mathrm{BMO}}
+
+% Macros: Tanja & Tamas
+
+\def\es{\emptyset}
+\def\ve{\varepsilon}
+\def\vp{\varphi}
+\def\vt{\vartheta}
+\def\sm{\setminus}
+\def\real{\mathbb{R}}
+\def\nat{\mathbb{N}}
+\def\bO{\mathbb{O}}
+\def\bU{\mathbb{U}}
+\def\bM{\mathbb{M}}
+\def\bW{\mathbb{W}}
+\def\bF{\mathbb{F}}
+\def\bV{\mathbb{V}}
+\def\cl{\textrm{cl}}
+\def\bel{\textrm{int}}
+\def\b{\left}
+\def\j{\right}
+\def\<{\left\langle}
+\def\>{\right\rangle}
+\def\rar{\rightarrow}
+\def\lrar{\leftrightarrow}
+\def\ben{\begin{enumerate}}
+\def\een{\end{enumerate}}
+\def\Keq{\begin{equation}}
+\def\Zeq{\end{equation}}
+\def\bit{\begin{itemize}}
+\def\eit{\end{itemize}}
+\def\pa{\partial}
+\def\d{\textrm{d}}
+\def\w{\omega}
+\def\om{\omega}
+\def\W{\Omega}
+\def\cpl{\complement}
+\def\cf{\textrm{cf}}
+\def\card{\textrm{card}}
+\def\ss{\subseteq}
+\def\sqss{\sqsubseteq}
+\def\Dh{\Delta_{h}}
+\def\vv{\vert \vert}
+\def\mc{\mathcal}
+\def\DS{\displaystyle}
+\def\TS{\textstyle}
+\def\BS{{\bf \Sigma}}
+\def\BD{{\bf \Delta}}
+\def\BP{{\bf \Pi}}
+\def\sign{\textrm{sign}}
+\def\Ran{\textrm{Ran}}
+\def\gotF{\mathfrak{F}}
+\def\gotJ{\mathfrak{J}}
+\def\gotI{\mathfrak{I}}
+\def\gotU{\mathfrak{U}}
+\def\diam{\textrm{diam}}
+\def\dim{\mathrm{dim~}}
+\def\dist{\textrm{dist}}
+\def\dom{\mathrm{dom}}
+\def\ker{\mathrm{ker}}
+\def\lin{\mathrm{lin}}
+\def\Id{\mathrm{Id}}
+\def\lev{\mathrm{lev}}
+\def\bel{\mathrm{int}}
+\def\PR{\textrm{Pr}}
+\def\bs{\blacksquare}
+\def\gotT{\mathfrak{T}}
+\def\iff{\Leftrightarrow}
+
+\def\Shift{\mathrm{Shift}}
+\def\Schwartz{\mathcal{S}}

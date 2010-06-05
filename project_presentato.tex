@@ -1,0 +1,275 @@
+%% Portaluri's format for article.
+%% by Alessandro Portaluri - Universita' del Salento
+%% e-mail: alessandro.portaluri@unisalento.it
+%%
+%%
+%===================================================================
+\documentclass[11pt,oneside,letterpaper,leqno,final]{article}
+%===================================================================
+
+%% Required Packages
+\usepackage[latin1]{inputenc}
+\usepackage{latexsym}
+\usepackage{a4wide}
+\usepackage{amscd}
+\usepackage{graphics}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{palatino}
+\usepackage[svgnames]{xcolor}
+\usepackage{mathrsfs}
+%\usepackage{geometry}\geometry{a4paper,scale={0.765,0.85}}
+\input xy
+\xyoption{all}
+
+%% New commands and symbols
+
+\newcommand{\N}{\mathbb{N}}                     % the natural numbers
+\newcommand{\Z}{\mathbb{Z}}                     % the integer numbers
+\newcommand{\Q}{\mathbb{Q}}                     % the rational numbers
+\newcommand{\R}{\mathbb{R}}                     % the real line
+\newcommand{\C}{\mathbb{C}}                     % the complex plane
+\newcommand{\U}{\mathbb{U}}                     % the unit circle
+\newcommand{\T}{\mathbb{T}}                     % the torus
+\newcommand{\F}{\mathbb{F}}                     % a field
+\newcommand{\set}[2]{\left\{{#1}\mid{#2}\right\}}       % the set
+\newcommand{\proof}{{\sl Proof.}\hspace{5pt}}   % beginning of proof
+\newcommand{\finedim}{\hfill $\Box$\\}            % end of proof
+\newcommand{\qed}{\hfill $\Box$ \bigskip}       % end of proof
+\newcommand{\im}{\mathrm{Im\,}}                 % immaginary part
+\newcommand{\re}{\mathrm{Re\,}}                 % real part
+\newcommand{\divergence}{\mathrm{div\,}}        % divergence
+\newcommand{\dist}{\mathrm{dist\,}}             % distance
+\newcommand{\coker}{\mathrm{coker\,}}           % Cokernel
+\newcommand{\corank}{\mathrm{corank}\,}         % corank
+\newcommand{\Span}{\mathrm{span\,}}             % span
+\newcommand{\sgn}{\mathrm{sgn\,}}               % signum
+\newcommand{\diam}{\mathrm{diam\,}}             % diameter
+\newcommand{\ind}{\mathrm{ind\,}}               % Fredholm index
+\newcommand{\FredL}{{\mathscr F\Lambda\,}}
+\newcommand{\codim}{\mathrm{codim}}             % codimension
+\newcommand{\diag}{\mathrm{diag\,}}             % diagonal matrix
+\newcommand{\essrange}{\mathrm{ess{\textstyle -}range}}      % essential range
+\newcommand{\supp}{\mathrm{supp\,}}             % support
+\newcommand{\conv}{\mathrm{conv\,}}             % convex hull
+\newcommand{\spec}{\mathrm{spec\,}}             % spectrum
+\newcommand{\graf}{\mathrm{graph\,}}            % graph
+\newcommand{\lip}{\mathrm{lip\,}}               % Lipschitz norm
+\newcommand{\rank}{\mathrm{rank\,}}             % rank
+\newcommand{\ran}{\mathrm{ran\,}}       % range
+\newcommand{\cat}{\mathrm{cat}}         % category
+\newcommand{\Diff}{\mathrm{Diff}}       % diffeomorphisms group
+\newcommand{\Sym}{\mathrm{Sym}}         % symmetric matrices
+\newcommand{\dom}{\mathrm{dom}\,}       % domain
+\newcommand{\esc}{\mathrm{esc}}         % essential commutator
+\newcommand{\ang}{\mathrm{ang\,}}       % angle
+\newcommand{\CP}{\mathbb{CP}}           % complex projective space
+\newcommand{\RP}{\mathbb{RP}}           % real projective space
+\newcommand{\ps}{{\bf PS}}              % Palais-Smale condition
+\newcommand{\crit}{\mathrm{crit}}       % Critical set
+\newcommand{\Hom}{\mathrm{Hom}}         % Space of homomorphisms
+\newcommand{\grad}{\mathrm{grad\,}}     % gradient
+\newcommand{\diver}{\mathrm{div\,}}       % divergence
+\newcommand{\normal}{D_{\vnu_g}}
+\newcommand{\coind}{\mathrm{coind\,}}   % co-index
+\newcommand{\spectral}{\mathrm{i_{spec}\,}} %indice di Morse generalizzato
+\newcommand{\sff}{\mathrm{sf\,}}         % flusso spettrale
+\newcommand{\hess}{\mathrm{Hess\,}}     % Hessian
+\newcommand{\sign}{\mathrm{sign\,}}     % signature
+\newcommand{\cco}{\mathrm{\overline{co}}\,} % closed convex hull
+\newcommand{\Det}{\mathrm{Det}}                 % Determinant bundle
+\newcommand{\rest}{\mathrm{rest}\,}             % set of rest poinst
+\newcommand{\scal}[1]{\langle{#1}\rangle}     % scalar product
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\Graph}{\mathrm{Graph}}
+\newcommand{\todo}[1]{\fbox{\large ** TO DO #1 **}}
+\newcommand{\til}{{~}}
+\newcommand{\elli}{{$(\mathscr E)$\ }}
+\newcommand{\boun}{{$(\mathscr P)$\ }}
+
+\usepackage{bm}
+\newcommand{\simbolovettore}[1]{{\boldsymbol{#1}}}
+\newcommand{\va}{\simbolovettore{a}}
+\newcommand{\vb}{\simbolovettore{b}}
+\newcommand{\vc}{\simbolovettore{c}}
+\newcommand{\vd}{\simbolovettore{d}}
+\newcommand{\ve}{\simbolovettore{e}}
+\newcommand{\vf}{\simbolovettore{f}}
+\newcommand{\vg}{\simbolovettore{g}}
+\newcommand{\vh}{\simbolovettore{h}}
+\newcommand{\vi}{\simbolovettore{i}}
+\newcommand{\vj}{\simbolovettore{j}}
+\newcommand{\vk}{\simbolovettore{k}}
+\newcommand{\vl}{\simbolovettore{l}}
+\newcommand{\vm}{\simbolovettore{m}}
+\newcommand{\vn}{\simbolovettore{n}}
+\newcommand{\vo}{\simbolovettore{o}}
+\newcommand{\vp}{\simbolovettore{p}}
+\newcommand{\vq}{\simbolovettore{q}}
+\newcommand{\vr}{\simbolovettore{r}}
+\newcommand{\vs}{\simbolovettore{s}}
+\newcommand{\vt}{\simbolovettore{t}}
+\newcommand{\vu}{\simbolovettore{u}}
+\newcommand{\vv}{\simbolovettore{v}}
+\newcommand{\vw}{\simbolovettore{w}}
+\newcommand{\vx}{\simbolovettore{x}}
+\newcommand{\vy}{\simbolovettore{y}}
+\newcommand{\vz}{\simbolovettore{z}}
+\newcommand{\vB}{\simbolovettore{B}}
+\newcommand{\vC}{\simbolovettore{C}}
+\newcommand{\vW}{\simbolovettore{W}}
+\newcommand{\vxi}{\simbolovettore{\xi}}
+\newcommand{\vpsi}{\simbolovettore{\psi}}
+\newcommand{\vnu}{\simbolovettore{\nu}}
+\newcommand{\vnabla}{\simbolovettore{\nabla}}
+%% \newcommand{\zero}{\simbolovettore{o0}}
+\newcommand{\zero}{\boldsymbol{0}}
+
+
+
+
+
+
+
+
+
+
+% Theorem-style environments
+
+\newtheorem{mainthm}{\sc Theorem}           % numbered absolutely
+\newtheorem{thm}{\sc Theorem}[section]      % numbered within each section
+\newtheorem{cor}[thm]{\sc Corollary}        % numbered along with Theorem
+\newtheorem{lem}[thm]{\sc Lemma}            % numbered along with Theorem
+\newtheorem{prop}[thm]{\sc  Proposition}     % numbered along with Theorem
+\newtheorem{add}[thm]{\sc Addendum}         % numbered along with Theorem
+\newtheorem{defn}[thm]{\sc Definition}      % numbered along with Theorem
+\newtheorem{rem}[thm]{\sc Remark}       % numbered along with Theorem
+\newtheorem{ex}[thm]{\sc Example}           % numbered along with Theorem
+\newtheorem{notation}[thm]{\sc Notation}    % numbered along with Theorem
+\newtheorem{ass}[thm]{\sc Assumption}       % numbered along with Theorem
+\newtheorem{prob}[thm]{\sc Exercise}        % numbered along with Theorem
+\newtheorem{conj}[thm]{\sc Conjecture}      % numbered along with Theorem
+
+\title{Project: Stationary solutions and their oscillating properties for the Kawahara diffusion equation}
+
+\author{Coordinator: Alessandro Portaluri\footnote{Dipartimento di Matematica ``Ennio De
+Giorgi'', Universit\`a del Salento, P.O.B.193, 73100, Lecce, Italy.
+e-mail: alessandro.portaluri@unisalento.it}\\
+ \\
+Kacov (Czech Republic)\\
+June 13-19, 2010.}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\subsection*{Introduction}
+    When looking at linear waves in homogeneous medium, Fourier analysis
+    shows that there are two possible phenomena which are likely destroy
+    a wave packet:
+\begin{itemize}
+\item Dissipation: Fourier components are damped.
+\item Dispersion: Fourier components of the wave do not travel at
+the same speed.
+\end{itemize}
+Because of this two effects, linear theory leads to the conclusion that: localized solutions traveling at a
+constant speed, called solitary waves, cannot exists in a
+dissipative or dispersive medium. However, solitary waves occur in
+several areas such as an-harmonic nonlinear lattices, gas dynamic,
+hydromagnetic waves, ion-acoustic waves in cold plasma and
+hydrodynamics; in fact in all these case, the nonlinearity counteract the dispersion.
+%For a lot of nonlinear dispersive equations, like for instance the Kortweg-de Vries,
+%solitary waves and their stability are now well understood; this is not yet for other
+%dispersive equations like Kawahara equation.
+
+\noindent
+The aim of this project is to study the steady state
+solutions of the Kawahara equation:
+\[
+u_t=u_{xxxxx}-Pu_{xxx}-(u^{q+1})_x +c u_x, \qquad q \geq 1
+\]
+%\[
+%\dfrac{\partial u}{\partial t}=\dfrac{\partial^5 u}{\partial
+%x^5}-P\dfrac{\partial^3 u}{\partial x^3}- \dfrac{\partial}{\partial
+%x}(u^{q+1})+ c \dfrac{\partial u}{\partial x}, \qquad q \geq 1
+%\]
+where $P$ and $ c$ are real parameters. The importance of this equation is related
+to the study of water waves in presence of
+capillarity. In fact in this case particular values of capillarity can annihilate
+the higher order dispersive terms.
+
+%This equation was introduced
+%to take into account higher order dispersive
+%terms, which are relevant for  and it is relevant when the cubic dispersion is low.
+
+%More precisely we will be interested in
+%periodic solutions and transition layers, also known as {\em domain
+%walls or kinks.\/}
+
+
+
+\subsection*{Formulation of the problem and main results} The steady
+part of the Kawahara equation can be written as:
+\[
+u_{xxxx}-Pu_{xx} + cu -u^{q+1}=0.
+\]
+This ODE also arise in a number of physical examples; for instance it appears as
+the steady part of the one-dimensional Swift-Hohenberg equation $
+\phi_t=-\phi_{xxxx}+P\phi_{xx} -\phi + \phi^{q+1}$
+and in the case of cubic nonlinearity also as the steady part
+of the Extended Fisher-Kolmogorov equation
+\begin{equation}\label{eq:EFK}
+\phi_t=\phi_{xxxx}+\phi_{xx} +\phi - \phi^3.
+\end{equation}
+In the paper \cite{PTV}, the authors studied two types of stationary solutions of the equation \eqref{eq:EFK}:
+periodic solutions and transition layers. In particular they proved existence and oscillating properties of the
+solutions by means of variational methods.
+
+\noindent
+What we propose here, is to prove by using variational methods and abstract
+Morse theory the existence/non existence of non trivial periodic and kinks solutions for the steady part of the more general Kawahara equation and their dependence by the physical parameters of the problem. The basic idea in order to prove the existence and oscillating properties of the solutions for the Kawahara equation is to follow the lines traced back in the paper \cite{PTV}.
+
+\subsection*{Further perspectives...}
+
+Another interesting problem related to the previous one which goes beyond the aims of the project, is
+to try to investigate the case of gradient parabolic systems with the same
+higher order nonlinearities. These kind of systems in the case of second order spatial derivative  were used over the years in order to study coupled nerve fibers. The most popular and studied were the Scott-Luzader model, Keener and Hodgkin-Huxley models. The key feature is that all of these are based on the modeling of a single fiber by the  FitzHugh-Nagumo system.
+
+\noindent
+In this more general situation the oscillating properties related to the total number of zeros or even to their distribution along each solution is meaningless and probably it should be replaced by some symplectic invariant as the Maslov index (see, for instance \cite{a1967} and \cite{a1985}) related to the oscillation in the symplectic group of the fundamental solution of an arising linear Hamiltonian system.
+
+\subsection*{...and closing remark}
+Once more, we stress the fact that this last section on further perspectives represent a research proposal and it will be taken into account only when the project all gone and under an explicit interest of the involved team.
+
+
+
+
+
+%%%=========================================================================
+\begin{thebibliography}{100}
+
+\bibitem[Ar67]{a1967}
+V.I.~Arnol'd.
+\newblock On a characteristic class entering into conditions of quantization.
+\newblock {Funkcional. Anal. i Prilozen.}, 1: 1--14, 1967.
+
+
+\bibitem[Ar85]{a1985}
+V.I.~Arnol'd.
+\newblock The Sturm theorems and symplectic geometry.
+\newblock {Funktsional. Anal. i Prilozhen.}, 19, no. 4: 1--10, 95, 1985.
+\newblock {English translation: Functional Anal. Appl.}, 19, no. 4: 251--259, 1985.
+
+\bibitem[PTV]{PTV}
+L.A. Peletier; W.C. Troy, R.K.A.M. Van der Vorst.
+\newblock Stationary solutions of a fourth-order nonlinear diffusion
+equation.
+\newblock {(Russian) Translated from the English by V. V.
+Kurt. Differentsialnye Uravneniya},  31  no. 2, 327--337, 1995.
+\newblock {English translation in Differential Equations}, 31,  no. 2,
+301--314, 1995.
+\end{thebibliography}
+
+
+
+\end{document}

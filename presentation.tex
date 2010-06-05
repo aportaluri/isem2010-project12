@@ -1,0 +1,491 @@
+\documentclass[utf8,color={usenames},hyperref={pdftitle={ISEM presentation},pdfauthor={Pavel Zorin}}]{beamer}
+\mode<presentation>
+
+%\usepackage[charter]{mathdesign}
+\usepackage[T1]{fontenc}
+%\usepackage{pzorin}
+
+% Theorem-style
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title{Mountain pass geometry}
+\author[Pavel]{Pavel Zorin-Kranich \newline \texttt{pavel.zorin@online.de}}
+%\href{mailto:pavel.zorin@online.de}{pavel.zorin@online.de}}
+\date[ISEM'10]{13th ISEM 2010, Kacov, CZE}
+
+\newcommand{\dist}{\mathrm{dist}}
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Variational problem}
+\begin{frame}
+\frametitle{The model problem}
+\begin{align*}
+\tilde V(v) &= \frac14 v^4 + v^3 + v^2\\
+0 &= D^4 v + \beta D^2 v + V'(v)
+\end{align*}
+The critical points of the Lagrange functional
+\[
+\tilde J_\beta(v) = \int_\R |v''|^2 / 2 - \beta |v'|^2 / 2 + \tilde V(v),
+\quad
+v \in H^2(\R),
+\]
+are characterized by
+\[
+0 = \left\langle \tilde J_\beta'(v), \phi \right\rangle = \int_\R v'' \phi'' - \beta v' \phi' + \tilde V'(v) \phi
+\]
+for every $\phi \in H^2$ and are solutions of the differential equation.
+\end{frame}
+
+\subsection{Regularity of the solutions}
+\begin{frame}
+\frametitle{The finite difference (``discrete differentiation'') operator}
+\begin{definition}
+The \emph{shift} operator:
+\[
+\tau_h u(x) = u(x+h).
+\]
+The \emph{finite difference} operator:
+\[
+\Delta_h u(x) = \frac{u(x+h) - u(x)}{h}.
+\]
+\end{definition}
+Elementary properties:
+\begin{align*}
+\Delta_h(v u) &= (\tau_h v) \Delta_h u + (\Delta_h v) u & \text{(Leibnitz rule),}\\
+\int_\R v \Delta_h u &= - \int_\R (\Delta_{-h} v) u & \text{(Partial integration)}.
+\end{align*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Basic tool for proving differentiability}
+\begin{lemma}
+Let $u \in L^2_{loc}(\R)$ be such that for any bounded interval $\Omega$
+\[
+\int_\Omega |\Delta_h u|^2 \leq C_\Omega \quad \text{for every } h>0.
+\]
+Then $u' \in L^2_{loc}$.
+\end{lemma}
+\begin{proof}
+As smooth test functions $\phi$ are dense in $L^2(\Omega)$, it suffices to observe
+\begin{multline*}
+\left| \int_\Omega u' \phi \right|
+=
+\left| \int_\Omega u \phi' \right|
+=
+\left| \lim_{h \to 0} \int_\Omega u (\Delta_{-h} \phi) \right|
+\\=
+\lim_{h \to 0} \left| \int_\Omega (\Delta_{h} u) \phi \right|
+\leq C_\Omega ||\phi||_2.
+\qedhere
+\end{multline*}
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Regularity of solutions of the variational problem}
+\[
+0 = \int_\R v'' \phi'' - \beta v' \phi' + \tilde V'(v) \phi
+\]
+Observe that $f = \tilde V'(v) \in L^2(\R)$ by the Sobolev embedding theorem.
+
+Substitute $\Delta_{-h} \phi$ for $\phi$ and use partial integration:
+\[
+\int_\R (\Delta_h v'') \phi'' - \underbrace{\beta (\Delta_h v') \phi'}_{\uncover<2->{\text{unimportant}}} + f (\Delta_{-h} \phi) = 0.
+\]
+\pause
+Specialize to $\phi = \eta^4 \Delta_h v$, where $\eta$ is a smooth positive function with compact support which is $1$ on some interval $\Omega$ such that $|\eta'| < 1$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Regularity of solutions of the simplified problem}
+\[
+\int_\R (\Delta_h v'') (\eta^4 \Delta_h v)'' + f (\Delta_{-h} (\eta^4 \Delta_h v)) = 0.
+\]
+\begin{align*}
+\int \eta^4 |\Delta_h v''|^2
+&\lesssim
+\int \eta^2 |\Delta_h v''| |\Delta_h v' + \Delta_h v|\\
+&+
+\int |f| (\Delta_{-h}\Delta_h v)| + \int |f| |\Delta_h v |.
+\end{align*}
+\pause
+Use the elementary inequality $2AB \leq \epsilon A^2 + B^2/\epsilon$. For example,
+\[
+\int \eta^2 |\Delta_h v''| |\Delta_h v'|
+\leq
+\epsilon \int \eta^4 |\Delta_h v''|^2 + \frac1\epsilon \int |\Delta_h v|^2.
+\]
+\pause
+If $\epsilon$ is small enough, the first term is absorbed on the left. Procedding similarly,
+\[
+\int \eta^4 |\Delta_h v''|^2
+\lesssim
+\int |\Delta_h v'|^2
++
+\int |\Delta_h v|^2
++
+\int |f|^2
++
+\int |\Delta_{-h}\Delta_h v|^2.
+\]
+\end{frame}
+
+\begin{frame}
+\frametitle{$L^2$ estimate for the finite difference operator}
+\newcommand{\dif}{\text{d}}
+Finite difference operator is bounded by the differentiation operator in norm:
+\begin{align*}
+\int_\R |(\Delta_h u)(x)|^2 \dif x
+&=
+\int_\R \left|
+\frac{1}{h} \int_{y=x}^{x+h} u'(y) \dif y
+\right|^2 \dif x\\
+&\leq
+\int_\R \left|
+\frac{1}{h} \left(\int_{y=x}^{x+h} |u'(y)|^2 \dif y \right)^{1/2} h^{1/2}
+\right|^2 \dif x\\
+&=
+\frac{1}{h}
+\int_\R
+\int_{y=x}^{x+h} |u'(y)|^2 \dif y
+\dif x\\
+&=
+\int_\R |u'(x)|^2 \dif x
+\end{align*}
+\pause
+\[
+\int \eta^4 |\Delta_h v''|^2
+\lesssim
+\int |v''|^2
++
+\int |v'|^2
++
+\int |f|^2
+=
+\text{constant independent of } h
+\]
+By the regularity lemma, $v''' \in L^2$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Results so far}
+We have shown that a critical point of
+\[
+\tilde J_\beta(v) = \int_\R |v''|^2 / 2 - \beta |v'|^2 / 2 + \tilde V(v),
+\quad
+v \in H^2(\R)
+\]
+is in fact smooth and is a classical solution of
+\begin{align*}
+\tilde V(v) &= \frac14 v^4 + v^3 + v^2\\
+0 &= D^4 v + \beta D^2 v + V'(v).
+\end{align*}
+\end{frame}
+
+\section{Mountain pass geometry}
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}
+\frametitle{Equilibrium point: a mountain pass}
+\includegraphics[width=0.9\textwidth]<1>{images/mountain_pass_1.jpg}
+\includegraphics[width=0.9\textwidth]<2>{images/mountain_pass_2.jpg}
+\includegraphics[width=0.9\textwidth]<3>{images/mountain_pass_3.jpg}
+\includegraphics[width=0.9\textwidth]<4>{images/mountain_pass_4.jpg}
+\includegraphics[width=0.9\textwidth]<5>{images/mountain_pass_5.jpg}
+\end{frame}
+
+\begin{frame}
+\frametitle{Existence of an approximate mountain pass}
+\begin{theorem}
+Let $H$ be a Hilbert space, $h \in C^2(H)$, $x_0,x_1 \in H$ such that $h(x_0) = h(x_1) = 0$, but
+\begin{equation}
+\inf_\gamma \max_t h(\gamma(t)) = H > 0,
+\end{equation}
+the infimum being taken over continuous paths $\gamma$ from $x_0$ to $x_1$.
+
+Then there exist points $x$ with, simultaneously, $h(x)$ arbitrarily close to $H$ and $h'(x)$ arbitrarily close to $0$.
+\end{theorem}
+\pause
+\begin{proof}
+Assume not. Then, in some region $\{ |h-H| < 2 \epsilon \}$, $|h'|$ is bounded from below by $\epsilon$. Take a path $\gamma$ such that
+\[
+\max_t h(\gamma(t)) < H + \epsilon.
+\]
+The next lemma allows to construct a path $\tilde\gamma$ with maximal height smaller then $H$, a contradiction.
+\end{proof}
+\end{frame}
+
+%\subsection{Deformation lemma: existence of steepest descent flow}
+\begin{frame}
+\frametitle{Deformation lemma}
+\begin{lemma}
+Let $H$ be a Hilbert space
+and $h \in C^1 (H)$, $h' \in \text{Lip}_\text{loc}$ be the height function.
+
+Assume $|h'|>\epsilon$ in $\{ |h - H| \leq 2 \epsilon \}$.
+
+Then there exists a flow $\eta : [0,2 \epsilon] \times H \to H$ which
+\begin{itemize}
+\item leaves $\{ |h - a| > 2 \epsilon \}$ fixed,
+\item after time $2\epsilon$, maps $\{ h < a + \epsilon\}$ into $\{ h \leq a - \epsilon \}$.
+\end{itemize}
+\end{lemma}
+\end{frame}
+
+\begin{frame}
+\frametitle{Deformation lemma, proof}
+\includegraphics[width=0.5\textwidth]<1>{images/mountain_pass_qd_0.jpg}
+\includegraphics[width=0.5\textwidth]<2>{images/mountain_pass_qd_2.jpg}
+\includegraphics[width=0.5\textwidth]<3>{images/mountain_pass_qd_3.jpg}
+
+\begin{itemize}
+\item<2-> Cutoff function $g(x) := \frac{\dist(x,\complement A)}{\dist(x,\complement A) + \dist(x,B)}$.
+\begin{itemize}
+\item $g|_{\color{magenta} B} \equiv 1$, $g|_{\color{red} \complement A} \equiv 0$ and $g$ is locally Lipschitz.
+\end{itemize}
+
+\item<3-> Locally Lipschitz vector field ${\color{blue}X}(x) = - \frac{h'(x)}{|h'(x)|^2} g(x)$.
+\begin{itemize}
+\item Picard-Lindelöf Theorem $\implies$ $X$ defines a unique continuous flow $\eta$.
+\item $X$ bounded $\implies$ the flow $\eta$ exists for all times.
+\item ${\color{blue} X} h|_{\color{magenta} B} = -1$.
+\end{itemize}
+
+\item<3-> Thus the time $2 \epsilon$ map of the flow $\eta$ maps $B$ into $\{ h \leq a - \epsilon \}$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Deformation lemma, local version}
+\begin{lemma}
+Let $H$ be a Hilbert space
+and $h \in C^1 (H)$, $h' \in \text{Lip}_\text{loc}$ be the height function.
+\uncover<2->{Let {\color{red} $S \subset H$}.}
+
+Assume $|h'|>\epsilon$ in $\{ |h - H| \leq 2 \epsilon \}$
+\uncover<2->{{\color{red} $\cap \{ \dist (\cdot,S) \leq 4 \}$}}
+
+Then there exists a flow $\eta : [0,2 \epsilon] \times H \to H$ which
+\begin{itemize}
+\item leaves $\{ |h - a| > 2 \epsilon \}$
+\uncover<2->{{\color{red} and $\{ \dist (\cdot,S) > 4 \}$}}
+fixed,
+\item after time $2\epsilon$, maps $\{ h < a + \epsilon\}$
+\uncover<2->{{\color{red} $\cap S$}}
+into $\{ h \leq a - \epsilon \}$.
+\end{itemize}
+\end{lemma}
+
+\uncover<3->{
+\begin{proof}
+Use a cutoff function which satisfies
+\[
+\phi(x) =
+\begin{cases}
+1, & \dist(x, S) \leq 2\\
+%2 - \dist(x, S)/2, & 2 < \dist(x, S) < 4\\
+0, & \dist(x, S) \geq 4.
+\end{cases}
+\]
+Proceed as before, but use the vector field $\phi X$.
+As the vector field is uniformly bounded, the flow lines starting in $S$ will stay in $\{\dist(\cdot, S) \leq 2\}$ long enough, so that $\phi X h = -1$ where needed.
+\end{proof}
+}
+\end{frame}
+
+\section{Lagrange functional with mountain pass structure}
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}
+\frametitle{A version of the Lagrange functional with mountain pass structure}
+$\tilde J_\beta$ doesn't have the mountain pass structure.
+
+To overcome this difficulty, we will consider a cut-off potential and the corresponding functional
+\begin{align*}
+V(v) &=
+\begin{minipage}{6cm}
+$\begin{cases}
+v^4 / 4 + v^3 + v^2 & v \geq -2\\
+0 & v < -2,
+\end{cases}$
+\end{minipage}
+\\
+J_\beta(v) &= \int_\R |v''|^2 / 2 - \beta |v'|^2 / 2 + V(v).
+\end{align*}
+A critical point $v$ of $J_\beta$ is also a critical point of $\tilde J_\beta$ if only it satisfies the pointwise inequality $v>-2$. In such a case it is also a classical solution of our equation.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Mountain pass structure of $J_\beta$: valley at $0$}
+We work in a fixed range $0 < \beta_{min} < \beta < \beta_{max} < \sqrt 8$.
+\begin{lemma}
+For some $\epsilon > 0$, $\delta > 0$
+\[
+J_\beta(v) \geq \epsilon ||v||_{H^2}^2, \quad \text{whenever } ||v|| < \delta.
+\]
+\end{lemma}
+\begin{proof}
+Sobolev embedding theorem and a calculation.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mountain pass structure of $J_\beta$: a second valley}
+\begin{lemma}
+There exists $e \in H^2(R)$ such that $J_\beta(e)<0$ for every $\beta \in [\beta_{min},\beta_{max}]$.
+%\textbf{Probably no proof, just say the cut-off is useful}
+\end{lemma}
+\begin{proof}
+Let $0 \not\equiv f$ be a negative smooth function with compact support. Its dilates $f_\lambda(x)=f(\lambda x)$ satisfy.
+\[
+\int (f_\lambda'')^2 \sim \lambda^3, \quad \int (f_\lambda')^2 \sim \lambda.
+\]
+\[
+\text{Thus, for}\  \lambda>0\ \text{small,} \quad
+j_\beta = \frac12 \int_\R (f_\lambda'')^2 - \beta (f_\lambda')^2 < 0.
+\]
+As the support of $f_\lambda$ is bounded and $V(v)$ is bounded for $v\leq 0$,
+\[
+J_\beta(C f_\lambda) = j_\beta C^2 + \text{const}, \quad
+\text{(this is where the cut-off comes in!)}
+\]
+Thus, for $C$ big enough, $e = C f_\lambda$ has the required properties.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pass levels}
+Define the pass levels by
+\[
+H_\beta = \inf_\gamma \sup_{t} J_\beta(\gamma(t)),
+\]
+where the infimum is taken over continuous paths $\gamma$ from $0$ to $e$.
+
+%Such paths shall be called \emph{admissible.}
+
+\pause
+Recall
+\[
+J_\beta(v) = \text{(something)} - \beta \text{(something positive)}.
+\]
+
+Thus the pass level function $H_\beta$ is monotonously decreasing and therefore differentiable almost everywhere.
+\end{frame}
+
+\begin{frame}
+\frametitle{Minimizing sequence for $J_\beta'$}
+\begin{lemma}
+Let $\beta \in [\beta_{min}, \beta_{max}]$ be such that the derivative $H'_\beta$ exists. Then there exists a sequence $(v_n) \subset H^2(R)$ which satisfies
+\begin{enumerate}
+\item $J_\beta(v_n) = H_\beta + o(1)$,
+\item $J_\beta'(v_n) = o(1)$,
+\item $\frac12 ||v_n'||_2^2 \leq -2H'_\beta + 2$.
+\end{enumerate}
+\end{lemma}
+\pause
+\emph{Proof}
+
+Define the admissible region
+\[
+S = \{ u\ :\ \frac12 || u' ||_2^2 \leq - H'_\beta + \frac12 \}
+\]
+Assume the opposite. Then there exists an $\epsilon <  H_\beta/2$ such that
+\[
+||J'_\beta|| > 32 \epsilon
+\, \text{on} \,
+\{ |J_\beta - H_\beta| < 2 \epsilon \} \cap \{ \dist(\cdot,S) \leq 1/2 \}.
+\]
+\end{frame}
+
+\begin{frame}
+\frametitle{Minimizing sequence for $J_\beta'$: flow decreasing $J_\beta$}
+By the local deformation lemma there exists a flow $\eta$ such that
+\begin{itemize}
+\item $\{ |J_\beta - H_\beta| \geq 2 \epsilon \}$ and $\{ \dist(\cdot,S) > 1/2 \}$ are let fixed,
+\begin{itemize}
+\item<2-> {\color{red} $0$ and $e$ are fixed}
+\end{itemize}
+\item $J_\beta$ decreases along $\eta$,
+\item time $2\epsilon$ map maps $\{ J_\beta \leq H_\beta + \epsilon\} \cap S$ into $\{J_\beta \leq H_\beta - \epsilon\}$.
+\end{itemize}
+\uncover<2->{
+For a contradiction, look for a path {\color{red} $\gamma$ from $0$ to $e$} such that
+\begin{itemize}
+\item $\gamma \subset S$,
+\item $J_\beta(\gamma) \leq H_\beta + \epsilon$.
+\end{itemize}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Minimizing sequence for $J_\beta'$: using differentiability of the pass level function}
+Choose $H_{\tilde\beta} < H_\beta$ later
+\uncover<2->{{\color{red} using differentiability of $H_\beta$ in $\beta$.}}
+
+By definition of $H_{\tilde\beta}$, there is a path $\tilde\gamma$ such that, for all $t$,
+\[
+\uncover<3->{{\color{blue} J_\beta(\tilde\gamma(t)) \leq}}
+J_{\tilde\beta} (\tilde\gamma(t)) \leq H_{\tilde\beta} + (\beta - \tilde\beta)/8
+\uncover<2->{{\color{red} \leq H_\beta' + \epsilon}}
+\]
+For every $t$ with $J_\beta(\tilde\gamma(t)) \geq H_\beta - (\beta-\tilde\beta)/8$, one has
+\[
+\frac12 ||\tilde\gamma(t)'||_2^2
+=
+\frac{J_{\tilde\beta}(\tilde\gamma(t)) - J_\beta(\tilde\gamma(t))}{\beta - \tilde\beta}
+\leq
+\frac{H_{\tilde\beta} - H_\beta}{\beta - \tilde\beta} + \frac14
+\uncover<2->{{\color{red} \leq - H'_\beta + \frac12,}}
+\]
+\uncover<3->{i.e. {\color{blue} $\tilde\gamma \subset S = \{ u :\, \frac12 || u' ||_2^2 \leq - H'_\beta + \frac12 \}$}}
+
+\uncover<4->{{\color{blue} Local deformation lemma: $\gamma = \eta_{2 \epsilon} (\tilde\gamma)$} is a path from $0$ to $e$ and
+\[
+J_\beta(\gamma) \leq H_\beta - \epsilon \text{ -- contradiction to the definition of } H_\beta.
+\qedhere
+\]
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Non-triviality of the weak limit}
+The sequence $v_n$ cannot converge to $0$ uniformly. Wlog one can assume that it is bounded away from $0$ in the supremum norm.
+Assume
+\[
+\limsup_n (\min_x v_n(x)) \geq -1.
+\]
+In such a case, using $V(v) \geq v^2/4$, one obtains that $v_n$ is bounded in $H^2$.
+
+Shift the $v_n$ such that the shifted versions have a maximum at $0$:
+\[
+w_n := \tau_{d_n} v_n, \quad d_n \ \text{such that}\  |v_n(d_n)| = \max_x |v_n(x)|.
+\]
+Thus, if $w_n \rightharpoonup w$, then $w(0) \neq 0$, as point evaluations are weakly continuous. It follows that $w$ is a critical point of $J_\beta$.
+\end{frame}
+
+\end{document}
+
+%<!-- Local IspellDict: american -->

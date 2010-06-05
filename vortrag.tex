@@ -1,0 +1,424 @@
+\documentclass[pdftex,10pt,intlimits]{beamer}
+%\documentclass[pdftex,10pt]{beamer}
+%\documentclass[pdftex,10pt,hyperref={pdfpagemode=FullScreen,pdfstartpage={1}}]{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  % or ...
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+%\usepackage{eufrak}%packages for fractional fonts
+
+%\usepackage[notcite,notref]{showkeys}
+%\usepackage[active]{srcltx}%inverse search
+
+\usepackage{graphicx}
+%\hypersetup{%
+%  pdftitle={},
+%  pdfsubject={},
+%  pdfauthor={},
+%  pdfkeywords={},
+%  pdfcreator={pdfLaTeX},
+%  pdfproducer={pdfLaTeX},
+%  }
+%\usepackage{eepic}
+\usepackage{color}
+
+\usepackage{amsmath}%center-tags centered tags at split
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsxtra}
+
+% \usepackage{enumerate}
+
+\usepackage{ifthen} %
+\usepackage{xspace} %
+
+
+\usepackage{paper_diening}
+
+%% symbol for mean value
+\newcommand{\meantmp}[2]{#1\langle{#2}#1\rangle}
+\newcommand{\mean}[1]{\meantmp{}{#1}}
+\newcommand{\bigmean}[1]{\meantmp{\big}{#1}}
+\newcommand{\Bigmean}[1]{\meantmp{\Big}{#1}}
+\newcommand{\biggmean}[1]{\meantmp{\bigg}{#1}}
+\newcommand{\Biggmean}[1]{\meantmp{\Bigg}{#1}}
+
+
+%\numberwithin{equation}{section}
+
+% %own parameters
+% \newlength{\boxparameter}
+% \setlength{\boxparameter}{\textwidth}
+% \addtolength{\boxparameter}{-6pt}
+
+\definecolor{lightgrey}{rgb}{.7,.7,.7}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\hellgrau}[1]{\textcolor{lightgrey}{#1}}
+
+
+% hyphenation list------------------------------------------------
+\hyphenation{ }
+
+\title{The Kawahara Equation}
+
+% abstract: It has been possible in the recent years to generalize parts
+% of the linear Calderon-Zygmund theory to the non-linear setting of the
+% p-Laplacian. We discuss the basic principles of this method and
+% generalize it to the context of Non-Newtonian fluids.
+
+\author{ \inst{1} \and }%
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute
+{
+  \inst{1}%
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+
+
+\date{May 19, 2010}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+%\pgfdeclareimage[height=0.5cm]{university-logo}{unilogo}
+%\logo{\pgfuseimage{university-logo}}
+%\titlegraphic{\includegraphics[height=1cm]{unilogo}\hspace*{1cm}\includegraphics[height=1cm]{iam}}
+
+
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+% \AtBeginSubsection[]
+% {
+%   \begin{frame}<beamer>
+%     \frametitle{Outline}
+%     \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+% }
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command:
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+
+\begin{frame}
+ \titlepage
+ % You might wish to add the option [pausesections]
+\end{frame}
+
+
+\section{Introduction}
+
+\begin{frame}
+  \frametitle{The Kawahara Equation}
+  %\framesubtitle{Optional}
+  \begin{block}{}
+  $$u_t + u_x + u_{xxx} + u_{xxxxx} + (u^{q+1})_x = 0 \mbox{ for } q\ge 1$$
+  \end{block}
+  \begin{itemize}
+   \item Higher order generalization of famous Korteweg-de Vries equation:\\ \hspace{2.5cm} $u_t + u_{xxx} + uu_x = 0$
+   \item A model for (among others) propagation of low amplitude water waves in shallow canal, subject to gravity and
+capillarity
+   \item Hamiltonian system: solutions are orbits along the {\bf symplectic} gradient of
+energy $H$, ``symplectic gradient system''\\
+$\leadsto$ Conservation of energy, instead of dissipation
+  \end{itemize}
+\begin{block}{}
+{\begin{bf} Reminder\end{bf}}: Vector space $V$, symplectic form $\omega$ on $V$, i.e.\\
+\vspace{0.15cm}
+\hspace{0.5cm} nondegenerate, skew-symmetric bilinear form (and $d\omega=0$),\\
+\vspace{0.15cm} functional $H: V\rightarrow \set R$. Define
+$\omega(X_H,\cdot) := dH$.
+$$\leadsto u_t=X_H(u)$$
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nonlinear Dispersive Equations}
+  %\framesubtitle{Optional}
+Linear (nondissipative) wave type equations usually exhibit  {\bf dispersion}:\\
+\vspace{0.15cm}
+\hspace{0.25cm} Different Fourier components of a solution travel at different speeds.\\
+\vspace{0.15cm}
+\begin{block}{Example}
+$u(t,x)=Ae^{i(t\omega + xk)}$ solves Airy equation $u_t + u_{xxx} = 0$ iff $\omega =
+k^3$, i.e.$$u(t,x)=Ae^{ik(x -  (-k^2)t)}$$
+\vspace{-0.5cm}
+\begin{itemize}
+ \item All frequencies propagate leftward
+ \item Higher frequencies propagate faster than lower ones
+\end{itemize}
+$\leadsto$ Localised high-amplitude states disperse leftward into broader, lower amplitude states (but conserving
+energy!)
+\end{block}
+\vspace{0.25cm}
+{\bf But}: Solitary waves (solitons) can be observed in nature. $\leadsto$ Nonlinearity counteracts
+dispersion
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nonlinear Dispersive Equations}
+  %\framesubtitle{Optional}
+Some remarkable properties of KdV:
+\begin{itemize}
+ \item admits stable solitary wave solutions moving to the right, while nonlocal states move to the left
+ \item colliding solitons interact nonlinearly, but emerge almost unchanged (shifted)
+ \item completely integrable, roughly: infinitely many conserved quantities $\leadsto$ phase space (formally) reduces to
+a point
+ \item inverse scattering technique: (almost) explicit formula for solution to arbitray (sufficiently regular) initial
+data
+ \item generic initial data: most of the solution ``radiates'' away to the left, while finite number of solitons moving
+to the right emerges
+\end{itemize}
+Same approach possible for gKdV, $u_t + u_{xxx} + (u^q)_x = 0$ with $q=3$, and some NLS equations, {\bf but
+not} for more general equations like gKdV with $q\not=2,3$ or the Kawahara equation.
+\end{frame}
+
+\section{Physical Derivation of the Kawahara Equation}
+
+\begin{frame}
+  \frametitle{2d-Euler equations}
+  %\framesubtitle{Optional}
+  Ideal, inviscid, incompressible, irrotational two-dimensional fluid with free boundary subject to capillarity and
+gravity. After non-dimensionalisation:
+\begin{block}{}
+\begin{equation*}\begin{aligned}
+  u_t + \alpha(uu_x + wu_z) + p_x &= 0,\\
+ \beta [w_t + \alpha(uw_x + ww_z)] + p_z &=0,\\
+ \Delta \phi &= 0,
+\end{aligned}\end{equation*}
+\end{block}
+with velocity field $(u,w)=\nabla\phi$ in $(x,z)$ coordinates, ``pressure'' $p$, $\alpha=a/h_0$, $\beta=(h_0/l)^2$,
+amplitude and wavelength $a,l$ of the surface wave, height $h_0$ of the undisturbed surface. Boundary conditions:
+\begin{block}{}
+\begin{equation*}\begin{aligned}
+  w&=0 \mbox{ at } z=0,\\
+  w&=\eta_t+\alpha u\eta_x\mbox{ at } z=1+\alpha\eta,\\
+  p&=\eta - \beta\tau\frac{\eta_{xx}}{(1+\alpha^2\beta\eta_x^2)^{3/2}}\mbox{ at } z=1+\alpha\eta,
+\end{aligned}\end{equation*}
+\end{block}
+with free surface $h=1 + \alpha\eta$, Bond number $\tau=\Gamma/\rho g h_0^2$, surface tension coefficient $\Gamma$,
+density $\rho$, gravitional acceler. $g$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Coupling of $\alpha$ and $\beta$}
+  %\framesubtitle{Optional}
+  {\bf Goal}: Eliminate $u,w,p$ in the small-amplitude and long-wavelength limit.\\
+ \bigskip
+Linearisation at $0$ and plugging $\eta=Ae^{i(\omega t - kx)}$ gives
+\begin{block}{}{\small
+\begin{equation*}\begin{aligned}
+\omega^2 = \frac{g}{h_0}\Big((1+\tau k^2h_0^2)kh_0\tanh(kh_0)\Big) \approx gh_0k^2\Big[1-\Big(\frac{1}{3} -
+\tau\Big)k^2h_0^2 + \mbox{h.o.t.}\Big]
+\end{aligned}\end{equation*}}
+\end{block}
+in the long wavelength limit $kh_0 \ll 1$.\\
+\bigskip
+$\leadsto$ Leading order dispersive term is of order $(\frac{1}{3}-\tau)k^2h_0^2$, equiv.
+$(\frac{1}{3}-\tau)\beta$
+\begin{block}{}
+Since the nonlinearity is of order $\alpha$, we need
+\begin{equation*}\begin{aligned}
+  \alpha=O(\beta) &\mbox{ if } \abs{1/3-\tau}=O(1),\\
+  \alpha=O(\beta^2) &\mbox{ if } \abs{1/3-\tau}=O(\beta).
+\end{aligned}\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Eliminating $u,w,p$}
+  %\framesubtitle{Optional}
+  Course of action:
+  \begin{itemize}
+   \item Express the boundary conditions by Taylor series expansion at $z=1$:
+\begin{block}{}
+\vspace{-0.35cm}
+\begin{equation*}\begin{aligned}
+  w + \alpha\eta w_z + \frac{\alpha^2\eta^2}{2} w_{zz}&=\eta_t+\alpha\eta_x (u + \alpha\eta u_z) + O(\alpha^3) \mbox{ at
+} z=1,\\
+  p + \alpha\eta p_z + \frac{\alpha^2\eta^2}{2}p_{zz}&=\eta
+- \beta\tau\eta_{xx} + O(\alpha^3,\alpha^2\beta^2)\mbox{ at } z=1,
+\end{aligned}\end{equation*}
+\end{block}
+\item Expand $u,w,p,\eta$ into double power series $q=\sum_{i,j=0}^\infty \alpha^i\beta^jq_{ij}$
+\item Plug expansions into Euler equations and expanded boundary conditions
+\item Compare the coefficients of terms of order $O(1),O(\alpha),O(\beta),O(\alpha^2),O(\beta^2),O(\alpha\beta)$
+\item Combine to get equations for $\eta_{ij}$
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Equations for $\eta_{ij}$}
+  %\framesubtitle{Optional}
+{\small\begin{equation*}\begin{aligned}
+\eta_{00tt} - \eta_{00xx} &= 0\\
+\eta_{10tt} - \eta_{10xx} &= \Big[\frac{\eta_{00}^2}{2} +
+\Big(\int_{-\infty}^x\eta_{00t}\Big)^2\Big]_{xx}\\
+\eta_{01tt} - \eta_{01xx} &= \Big(\frac{1}{3}-\tau\Big)\eta_{00xxxx}\\
+\eta_{20tt} - \eta_{20xx} &= (\eta_{00}\eta_{10})_{xx} + 2
+\Big[\int_{-\infty}^x\eta_{00t}\int_{-\infty}^x\eta_{10t}\Big]_{xx} -
+\Big[\eta_{00}\Big(\int_{-\infty}^x\eta_{00t}\Big)^2\Big]_{xx}\\
+\eta_{02tt} - \eta_{02xx} &= \Big(\frac{1}{3}-\tau\Big)\eta_{01xxxx} +
+\frac{1}{3}\Big(\frac{2}{5}-\tau\Big)\eta_{00xxxxxx}\\
+\eta_{11tt} - \eta_{11xx} &= 2\Big(\int_{-\infty}^x\eta_{00t}\int_{-\infty}^x\eta_{01t}\Big)_{xx} +
+\Big(\frac{1}{3}-\tau\Big)\eta_{10xxxx} + \frac{2}{3}(\eta_{00t}^2)_{xx} + (\eta_{00}\eta_{00xx})_{xx}\\
+& \hspace{0.25cm}- \tau(\eta_{00}\eta_{00xxx})_x
+\end{aligned}\end{equation*}}
+\red{Combine according to $\eta=\sum_{i,j=0}^\infty \alpha^i\beta^j\eta_{ij}$.}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Approximate equation for $\eta$}
+%   %\framesubtitle{Optional}
+% \begin{block}{Boussinesq type equation}
+% {\begin{equation*}\begin{aligned}
+% \eta_{tt}-\eta_{xx} &-\alpha\Big[\frac{\eta^2}{2} + \Big(\int_{-\infty}^x\eta_t\Big)^2 \Big]_{xx} - \beta
+% \Big[\frac{1}{3} - \tau\Big]\eta_{xxxx} + \alpha^2\Big[\eta\Big(\int_{-\infty}^x\eta_t\Big)^2\Big]_{xx} \\
+% &+ \alpha\beta \Big[\frac{2}{3}(\eta_t^2)_{xx} + (\eta\eta_{xx})_{xx} -\tau(\eta\eta_{xxx})_x\Big] -
+% \frac{\beta^2}{3}\Big[\frac{2}{5}-\tau\Big]\eta_{xxxxxx} = 0
+% \end{aligned}\end{equation*}}
+% \end{block}
+% \begin{itemize}
+% \item Models bi-directional propagation of small-amplitude long-\\ wavelength capillarity-gravity water waves up to
+% order $O(\alpha^2)$,\\ $O(\beta^2),O(\alpha\beta)$
+% \item Nonlocal in space
+% \item Validity not uniform in $t$ due to growth of $\eta_{ij}$
+% \item Linearly well-posed for $\tau<2/5$
+% \item Nonlinearity of order $O(\alpha),O(\alpha^2),O(\alpha\beta)$
+% \item Dispersion of order $O(\beta),O(\beta^2)$
+% \end{itemize}
+% \end{frame}
+
+\begin{frame}
+  \frametitle{Approximate equation for $\eta$}
+  %\framesubtitle{Optional}
+\begin{block}{Boussinesq type equation}
+{\begin{equation*}\begin{aligned}
+\eta_{tt}-\eta_{xx} &-\alpha\Big[\frac{\eta^2}{2} + \Big(\int_{-\infty}^x\eta_t\Big)^2 \Big]_{xx} - \beta
+\Big[\frac{1}{3} - \tau\Big]\eta_{xxxx} + \alpha^2\Big[\eta\Big(\int_{-\infty}^x\eta_t\Big)^2\Big]_{xx} \\
+&+ \alpha\beta \Big[\frac{2}{3}(\eta_t^2)_{xx} + (\eta\eta_{xx})_{xx} -\tau(\eta\eta_{xxx})_x\Big] -
+\frac{\beta^2}{3}\Big[\frac{2}{5}-\tau\Big]\eta_{xxxxxx} = 0
+\end{aligned}\end{equation*}}
+\end{block}
+\begin{itemize}
+\item Taken into account terms of order up to $O(\alpha^2)$, $O(\beta^2),O(\alpha\beta)$
+\item Validity not uniformly in $t$ due to growth of $\eta_{ij}$
+\item Nonlinearity of order $O(\alpha),O(\alpha^2),O(\alpha\beta)$
+\item Dispersion of order $O(\beta),O(\beta^2)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Coupling of $\alpha$ and $\beta$}
+  %\framesubtitle{Optional}
+\begin{block}{Case 1: $\abs{1/3-\tau}\gg\beta$}
+We need $\alpha=O(\beta)$. Up to order $O(\alpha)=O(\beta)$ we get
+\begin{equation*}\begin{aligned}
+\eta_{tt}-\eta_{xx} &-\alpha\Big[\frac{\eta^2}{2} + \Big(\int_{-\infty}^x\eta_t\Big)^2 \Big]_{xx} \pm \alpha c_1
+\eta_{xxxx} = 0
+\end{aligned}\end{equation*}
+\end{block}
+\begin{block}{Case 2: $\abs{1/3-\tau}=O(\beta)$}
+We need $\alpha=O(\beta^2)$. Up to order $O(\alpha)=O(\beta^2)$ we get
+\begin{equation*}\begin{aligned}
+\eta_{tt}-\eta_{xx} &-\alpha\Big[\frac{\eta^2}{2} + \Big(\int_{-\infty}^x\eta_t\Big)^2 \Big]_{xx} \pm \alpha c_1
+\eta_{xxxx} - \alpha c_2 \eta_{xxxxxx} = 0
+\end{aligned}\end{equation*}
+\end{block}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Boussinesq and KdV type equations}
+%   %\framesubtitle{Optional}
+%   \begin{itemize}
+%    \item Coord. transformation: $X=\frac{1}{\sqrt{c_1}}\Big(x+\alpha\int_{-\infty}^x\eta(y,t)dy\Big),
+% T=\frac{1}{\sqrt{c_1}}t$
+%    \item Substitute $N=\frac{3}{2}(\eta-\alpha\eta^2)$
+%    \item Neglect terms of order $O(\alpha^2)$ and higher
+%   \end{itemize}
+% \begin{block}{Boussinesq type equations}
+% \begin{equation*}\begin{aligned}
+% \mbox{Case 1: } &N_{TT} - N_{XX} - \alpha (N^2)_{XX} \pm\alpha N_{XXXX} = 0 \\
+% \mbox{Case 2: } &N_{TT} - N_{XX} - \alpha (N^2)_{XX} \pm\alpha N_{XXXX} -c_3\alpha N_{XXXXXX} = 0
+% \end{aligned}\end{equation*}
+% \end{block}
+%   \begin{itemize}
+%    \item Coord. transformation: $\xi=X-T,\tau=\alpha T$
+%    \item Neglect terms of order $O(\alpha^2)$ and higher
+%    \item Integrate once
+%    \item Scaling of coordinates
+%  \end{itemize}
+% \begin{block}{KdV type equations}
+% \begin{equation*}\begin{aligned}
+% \mbox{Case 1: } &N_\tau + NN_\xi + N_{\xi\xi\xi} = 0 \\
+% \mbox{Case 2: } &N_\tau + NN_\xi + N_{\xi\xi\xi} + N_{\xi\xi\xi\xi\xi} = 0
+% \end{aligned}\end{equation*}
+% \end{block}
+% \end{frame}
+
+\begin{frame}
+  \frametitle{Boussinesq type equations}
+  %\framesubtitle{Optional}
+  \begin{itemize}
+   \item Coord. transformation: $X=\frac{1}{\sqrt{c_1}}\Big(x+\alpha\int_{-\infty}^x\eta(y,t)dy\Big),
+T=\frac{1}{\sqrt{c_1}}t$
+   \item Substitute $N=\frac{3}{2}(\eta-\alpha\eta^2)$
+   \item Neglect terms of order $O(\alpha^2)$ and higher
+  \end{itemize}
+\begin{block}{Boussinesq type equations}
+\begin{equation*}\begin{aligned}
+\mbox{Case 1: } &N_{TT} - N_{XX} - \alpha (N^2)_{XX} \pm\alpha N_{XXXX} = 0 \\
+\mbox{Case 2: } &N_{TT} - N_{XX} - \alpha (N^2)_{XX} \pm\alpha N_{XXXX} -c_3\alpha N_{XXXXXX} = 0
+\end{aligned}\end{equation*}
+\end{block}
+Models for bi-directional propagation of small-amplitude long-wavelength capillarity-gravity water waves
+  \begin{itemize}
+   \item Case 1: positive dispersive term for $1/3\ll\tau$, negative dispersive term for $0\le\tau\ll 1/3$ ($\leadsto$
+ill-posed, short-wave instability)
+   \item Case 2: positive dispersive term for $\tau$ slightly smaller than $1/3$, negative for $\tau$
+slightly bigger than $1/3$
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{KdV type equations}
+  \begin{itemize}
+   \item Coord. transformation: $\xi=X-T,\tau=\alpha T$
+   \item Neglect terms of order $O(\alpha^2)$ and higher
+   \item Integrate once
+   \item Scaling of coordinates
+ \end{itemize}
+\begin{block}{KdV type equations}
+\begin{equation*}\begin{aligned}
+\mbox{Case 1: } &N_\tau + NN_\xi + N_{\xi\xi\xi} = 0 \\
+\mbox{Case 2: } &N_\tau + NN_\xi + N_{\xi\xi\xi} + N_{\xi\xi\xi\xi\xi} = 0
+\end{aligned}\end{equation*}
+\end{block}
+\end{frame}
+
+
+\end{document}
+
+
+%% ZEIT

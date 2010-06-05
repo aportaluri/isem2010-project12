@@ -1,0 +1,487 @@
+\documentclass[a4paper,11pt,oneside,notitlepage]{article}
+\usepackage[left=3cm,top=2cm,bottom=2cm,right=3cm,includehead,includefoot]{geometry}
+%\usepackage[notcite,notref,draft]{showkeys}
+
+\usepackage[charter]{mathdesign}
+
+\usepackage{setspace}
+\usepackage{pzorin}
+
+%%Must be the LAST package used!
+\usepackage{hyperref}
+\hypersetup{
+bookmarks=true,
+pdfpagemode=UseNone,
+pdfstartview=FitH,
+pdfdisplaydoctitle=true,
+pdflang=en-US,
+%colorlinks=true, % Use the following colors for links
+%linkcolor=black,
+%citecolor=black,
+%urlcolor=black,
+pdfborder={0 0 0}, % No link borders
+unicode=true,
+pdftitle={Mountain pass geometry},
+pdfauthor={Pavel Zorin},
+pdfsubject={Search for critical points of a Lagrange functional},
+%pdfcreator={Creator},
+%pdfproducer={Producer},
+pdfkeywords={Quantitative deformation, Mountain pass, Homoclinic solution, Regularity of solutions of ODEs}
+}
+
+% Theorem-style
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{definition}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\H}{\mathcal{H}}
+
+\title{{\normalsize 13th Internet Seminar}\\
+Mountain pass geometry
+}
+\author{Pavel Zorin-Kranich\\
+\texttt{\href{mailto:pavel.zorin@online.de}{pavel.zorin@online.de}}}
+
+\begin{document}
+\begin{spacing}{1.20}
+
+\maketitle
+
+\section{Variational problem}
+Consider the equation
+\begin{equation}
+\label{eq:basic}
+D^4 v + \beta D^2 v + v^3 + 3 v^2 + 2 v = 0.
+\end{equation}
+For $v \in H^2(\R)$, let
+\begin{align*}
+\tilde V(v) &= \frac14 v^4 + v^3 + v^2\\
+\tilde J_\beta(v) &= \int_\R |v''|^2 / 2 - \beta |v'|^2 / 2 + \tilde V(v)
+\end{align*}
+The critical points of $\tilde J_\beta$ are characterized by
+\begin{equation}
+\label{eq:critical-point}
+0 = \< \tilde J'_\beta(v), \phi \> = \int_\R v'' \phi'' - \beta v' \phi' + \tilde V'(v) \phi
+\end{equation}
+for every $\phi \in H^2$. In this section, we will recall the proof of the fact that a critical point of the Lagrange functional $\tilde J_\beta$ is a classical solution of the Euler-Lagrange equation (\ref{eq:basic}).
+
+\begin{definition}
+The \emph{shift} operator is given by
+\[
+\tau_h u(x) = u(x+h),
+\]
+the \emph{finite difference} operator by
+\[
+\Delta_h u(x) = \frac{u(x+h) - u(x)}{h}.
+\]
+\end{definition}
+Elementary properties of $\tau_h$ and $\Delta_h$ include
+\begin{align}
+\label{eq:finite-leibniz}
+\Delta_h(v u) &= (\tau_h v) \Delta_h u + (\Delta_h v) u,\\
+\label{eq:finite-partial}
+\int_\R v \Delta_h u &= - \int_\R (\Delta_{-h} v) u.
+\end{align}
+The basic tool for showing regularity is the following
+\begin{lemma}
+\label{lemma:sobolev-criterion}
+Let $u \in L^1_{loc}(\R)$ be such that for any compact interval $\Omega$, any test function $\phi$ with $\supp \phi \subset \Omega$ and any $h>0$, $\int_\Omega (\Delta_h u) \phi \leq C_\Omega ||\phi||_{p'}$, $1<p \leq \infty$. Then $u' \in L^p_{loc}$.
+\end{lemma}
+\begin{proof}
+As test functions $\phi$ are dense in $L^{p'}(\Omega)$ for any interval $\Omega$, it suffices to observe
+\[
+\left| \int_\Omega u' \phi \right|
+=
+\left| \int_\Omega u \phi' \right|
+=
+\left| \lim_{h \to 0} \int_\Omega u (\Delta_{-h} \phi) \right|
+=
+\lim_{h \to 0} \left| \int_\Omega (\Delta_{h} u) \phi \right|
+\leq C_\Omega
+||\phi||_{p'}.
+\qedhere
+\]
+\end{proof}
+
+Let us now proceed to investigating a solution $v$ of the critical point equation (\ref{eq:critical-point}). Observe that $f = \tilde V'(v) \in L^2(\R)$ by the Sobolev embedding theorem.
+
+For every non-zero $h\in\R$, $\Delta_{-h} \phi \in H^2$ if $\phi \in H^2$. Substituting it into (\ref{eq:critical-point}) and using (\ref{eq:finite-partial}), one obtains
+\[
+\int_\R (\Delta_h v'') \phi'' - \beta (\Delta_h v') \phi' + f (\Delta_{-h} \phi) = 0.
+\]
+Specializing to $\phi = \eta^4 \Delta_h v$, where $\eta = \tau_{-k} \eta_0$ and $\eta_0$ is a fixed positive $C^\infty$ function which is $1$ on $[-1,1]$ and $0$ outside of $[-2,2]$, and applying (\ref{eq:finite-leibniz}) in the last term, one gets
+\begin{multline*}
+\int \eta^4 |\Delta_h v''|^2
+\leq
+\int |\Delta_h v''| |2 (\eta^4)' \Delta_h v' + (\eta^4)'' \Delta_h v|
++
+\beta \int |\Delta_h v'| |\eta^4 \Delta_h v' + (\eta^4)' \Delta_h v|
+\\+
+\left| \int f (\tau_{-h} \eta^4 \Delta_{-h}\Delta_h v) + f (\Delta_{-h} \eta^4) \Delta_h v \right|.
+\end{multline*}
+To deal with the terms on the right, use the elementary inequality $2AB \leq \epsilon A^2 + B^2/\epsilon$, valid for every $\epsilon$. The first term may be (decomposed into the sum of two terms of the following form and each of those be) estimated as
+\[
+\int |\Delta_h v''| \eta^2 \frac{u}{2}
+\leq
+\epsilon \int \eta^4 |\Delta_h v''|^2 + \frac1\epsilon \int |u|^2.
+\]
+For $\epsilon$ small enough, the first summand may be absorbed in the term on the left. In the remaining terms, estimate $\eta$ and its derivatives uniformly and apply the same inequality to get
+\[
+\int \eta^4 |\Delta_h v''|^2
+\lesssim
+\int |\Delta_h v'|^2
++
+\int |\Delta_h v|^2
++
+\int |f|^2
++
+\int |\Delta_{-h}\Delta_h v|^2.
+\]
+Observe that
+\begin{align*}
+\int_\R |(\Delta_h u)(x)|^2 \dif x
+&=
+\int_\R \left|
+\frac{1}{h} \int_{y=x}^{x+h} u'(y) \dif y
+\right|^2 \dif x\\
+&\leq
+\int_\R \left|
+\frac{1}{h} \left(\int_{y=x}^{x+h} |u'(y)|^2 \dif y \right)^{1/2} h^{1/2}
+\right|^2 \dif x\\
+&=
+\frac{1}{h}
+\int_\R
+\int_{y=x}^{x+h} |u'(y)|^2 \dif y
+\dif x\\
+&=
+\int_\R |u'(x)|^2 \dif x
+\end{align*}
+for $u \in H^1$. This shows that
+\[
+\int_{x=k-1}^{k+1} |\Delta_h v''|^2
+\lesssim
+\int |v''|^2
++
+\int |v'|^2
++
+\int |f|^2
+= \const,
+\]
+so that, by Lemma~\ref{lemma:sobolev-criterion}, $v \in H^3_\mathrm{loc}$. A similar argument with higher powers of $\eta$ yields $v \in H^4_\mathrm{loc}$, and so on. By the Sobolev embedding theorem, $v \in C^\infty(\R)$ and it follows easily that it is a classical solution of (\ref{eq:basic}).
+
+\section{Quantitative deformation lemma}
+The next question is how to find a critical point for a given functional on some Hilbert space. The best-known method is to use (weak) compactness to find a convergent subsequence of a minimizing sequence, which then converges to a global minimum, provided that the functional is (weakly) lower semicontinuous. Evidently, this method or its modifications only see local extrema. On the search for a saddle point, one might use the following
+\begin{thm}[Existence of a mountain pass]
+\label{thm:mountain-pass}
+Let $\H$ be a Hilbert space, $h \in C^2(\H)$, $x_0,x_1 \in \H$ such that $h(x_0) = h(x_1) = 0$, but
+\begin{equation*}
+\inf_\gamma \max_t h(\gamma(t)) = H > 0,
+\end{equation*}
+the infimum being taken over continuous paths $\gamma$ from $x_0$ to $x_1$.
+
+Then there exist points $x$ with, simultaneously, $h(x)$ arbitrarily close to $H$ and $h'(x)$ arbitrarily close to $0$.
+\end{thm}
+\begin{proof}
+Assume not. Then, for some $\epsilon$, $|h'| > \epsilon$ in $\{ |h-H| < 2 \epsilon \}$. Take a path $\gamma$ such that
+\[
+\max_t h(\gamma(t)) < H + \epsilon.
+\]
+The following Lemma~\ref{lemma:quantitative-deformation} provides a path $\eta_{2 \epsilon} (\gamma)$ from $x_0$ to $x_1$ with maximal height smaller then $H$, which contradicts the definition of $H$.
+\end{proof}
+
+\begin{lemma}[{\cite[Lemma 1.14]{willem}}]
+Let $\H$ be a Hilbert space, $h \in C^1 (\H)$ s.t. $h'$ is locally Lipschitz, $a \in \R$ and $\epsilon > 0$ such that $|h(x) - a| \leq 2 \epsilon$ implies $|h'(x)| > \epsilon$. Then there exists a continuous flow $\eta : [0,2 \epsilon] \times \H \to \H$ which leaves $\{ |h - a| > 2 \epsilon \}$ fixed such that $\eta_{2 \epsilon} (\{ h < a + \epsilon\}) \subset \{ h \leq a - \epsilon \}$.
+\label{lemma:quantitative-deformation}
+\end{lemma}
+\begin{proof}
+Let $A = \{ |h-a| < 2 \epsilon\}$ and $B = \{ |h-a| < \epsilon \}$. Set $g(x) := \frac{\dist(x,\complement A)}{\dist(x,\complement A) + \dist(x,B)}$. Then $g|_B \equiv 1$ and $g$ is locally Lipschitz. Define a vector field by $X(x) = - \frac{h'(x)}{|h'(x)|^2} g(x)$. Again, $X$ is locally Lipschitz. By a Picard-Lindelöf type result, $X$ defines a unique flow on $\H$. As $X$ is bounded, the flow exists for all times. Furthermore, in $B$ one has $X h (x) = -1$ and $h$ doesn't ever increase along the flow. Thus the time $2 \epsilon$ map must map a point of $B$ into $\{ h \leq a - \epsilon \}$.
+\end{proof}
+
+In Theorem~\ref{thm:mountain-pass}, the minimizing sequence for $|h'|$ may very well diverge to infinity. To deal with this problem in our application, we will need a more refined version of Lemma~\ref{lemma:quantitative-deformation}:
+\begin{lemma}[{\cite[Lemma 2.3]{willem}}]
+Let $\H$ be a Hilbert space, $S \subset \H$, $h \in C^1 (\H)$ such that $h'$ is locally Lipschitz, $a \in \R$ and $\epsilon > 0$ such that $|h(x) - a| \leq 2 \epsilon$ and $\dist (x,S) \leq 4$ implies $|h'(x)| > \epsilon$.
+Then there exists a continuous flow $\eta : [0,2 \epsilon] \times \H \to \H$ which leaves $\{ |h - a| > 2 \epsilon \}$ and $\{ \dist (\cdot,S) > 4 \}$ fixed such that $\eta_{2 \epsilon} (\{ h < a + \epsilon\}) \cap S \subset \{ h \leq a - \epsilon \}$.
+\label{lemma:quantitative-deformation-subset}
+\end{lemma}
+\begin{proof}
+Define a cutoff function by
+\begin{spacing}{1}\vspace{-2ex}
+\[
+\phi(x) =
+\begin{cases}
+1, & \dist(x, S) \leq 2\\
+2 - \dist(x, S)/2, & 2 < \dist(x, S) < 4\\
+0, & \dist(x, S) \geq 4.
+\end{cases}
+\]
+\end{spacing}
+Proceed as in the preceding lemma, but use the vector field $\phi X$. As the vector field is uniformly bounded by $1/\epsilon$, the flow lines starting in $S$ will stay in $\{\dist(\cdot, S) \leq 2\}$ for times in $[0,2 \epsilon]$. Thus one still has the needed decay of $h$ along the flow.
+\end{proof}
+
+
+\section{Mountain pass structure}
+The lemmata of the preceding section are most useful if the functional has so-called mountain pass geometry, which $\tilde J_\beta$ doesn't possess.
+To overcome this difficulty, we will consider, following \cite{svdb}, a cut-off potential and the corresponding functional
+\begin{spacing}{1}\vspace{-2ex}
+\begin{align*}
+V(v) &=
+\begin{minipage}{6cm}
+$\begin{cases}
+v^4 / 4 + v^3 + v^2 & v \geq -2\\
+0 & v < -2,
+\end{cases}$
+\end{minipage}
+\\
+J_\beta(v) &= \int_\R |v''|^2 / 2 - \beta |v'|^2 / 2 + V(v).
+\end{align*}
+\end{spacing}
+%By the Sobolev embedding theorem, $H^2 \hookrightarrow C_0(\R)$, so that
+A critical point $v$ of $J_\beta$ is also a critical point of $\tilde J_\beta$ if only it satisfies the pointwise inequality $v>-2$. Then it is also a classical solution of (\ref{eq:basic}).
+%%%%%%%%%%%%%%%%%%%%
+
+The following discussion depends on the choice of $\beta$. We will work in a fixed range given by $0 < \beta_{min} < \beta_{max} < \sqrt 8$.
+\begin{lemma}
+\label{lemma:J-beta-near-zero}
+There exist constants $\epsilon > 0$, $\delta > 0$ such that for every $\beta \in [0,\beta_{max}]$
+\[
+J_\beta(v) \geq \epsilon ||v||_{H^2}^2, \quad ||v|| < \delta.
+\]
+\end{lemma}
+\begin{proof}
+Let $a = 1 - \beta_{max}^2/8 > 0$. There exists an $r>0$ such that $V(v) > v^2 (2-a)/2$ on $[-r,r]$.
+
+By the Sobolev embedding theorem, there is a $\delta$ such that $||v|| < \delta$ implies $||v||_\infty < r$. In this case,
+\[
+\begin{split}
+J_\beta (v)
+&\geq
+\frac12 \int_\R (v''(x))^2 - \beta (v'(x))^2 + v^2(x) (2-a) \dif x\\
+&=
+\frac12 \int_\R (\xi^4 - \beta \xi^2 + (2-a))(\mathcal{F} v)^2 \dif\xi\\
+&=
+\frac12 \int_\R ( (\xi^2 - \beta/2)^2 + 1+\beta_{max}^2/8-\beta^2/4)(\mathcal{F} v)^2 \dif\xi\\
+&\geq
+\epsilon \int_\R (\xi^2 + 1)^2(\mathcal{F} v)^2 \dif\xi\\
+&\geq
+\epsilon ||v||^2
+\end{split}
+\]
+for some small $\epsilon$.
+\end{proof}
+
+\begin{lemma}
+There exists $e \in H^2(R)$, $||e||>\delta$ such that $J_\beta(e)<0$ for every $\beta \in [\beta_{min},\beta_{max}]$.  
+\end{lemma}
+\begin{proof}
+Let $0 \not\equiv f \in C^\infty_0(\R)$ be a nowhere positive function, $f_\lambda(x)=f(\lambda x)$.
+Then
+\[
+\int_\R (f_\lambda'')^2 = \lambda^3 \int_\R (f'')^2, \quad \int_\R (f_\lambda')^2 = \lambda \int_\R (f')^2.
+\]
+Thus there exists a small $\lambda>0$ such that
+\[
+j_\beta = \frac12 \int_\R (f_\lambda'')^2 - \beta (f_\lambda')^2 \leq j_{\beta_{min}} < 0.
+\]
+As $|\supp f_\lambda| = A < \infty$, one has
+\[
+J_\beta(C f_\lambda) = j_\beta C^2 + A/4,
+\]
+as $V(v) < 1/4$ for $v\leq 0$ (this is where the cut-off comes in!), so that for $C$ big enough, $e = C f_\lambda$ has the required properties. ($||e||>\delta$ by the previous lemma)
+\end{proof}
+
+Define the pass levels by
+\[
+H_\beta = \inf_\gamma \sup_{t\in [0,1]} J_\beta(\gamma(t)),
+\]
+where the infimum is taken over continuous paths $\gamma : [0,1] \to H^2(\R)$ from $\gamma(0) = 0$ to $\gamma(1)=e$, which shall be called admissible.
+
+The pass level function $H_\beta$ is monotonously decreasing and therefore differentiable almost everywhere.
+
+\begin{lemma}
+\label{lemma:ps}
+Let $\beta \in [\beta_{min}, \beta_{max}]$ be such that the derivative $H'_\beta$ exists. Then there exists a sequence $(v_n) \subset H^2(R)$ which satisfies
+\begin{enumerate}
+\item $J_\beta(v_n) = H_\beta + o(1)$,
+\item $J_\beta'(v_n) = o(1)$,
+\item $\frac12 ||v_n'||_2^2 \leq -2 H'_\beta + 2$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Define the admissible region
+\[
+S = \{ u \in H^2(\R) :\, \frac12 || u' ||_2^2 \leq - H'_\beta + 1/2 \}
+\]
+and assume the opposite. Then there exists an $\epsilon \in (0, H_\beta/2)$ such that
+\[
+||J'_\beta|| > 32 \epsilon
+\, \text{on} \,
+\{ |J_\beta - H_\beta| < 2 \epsilon \} \cap \{ \dist(\cdot,S) \leq 1/2 \}.
+\]
+By the quantitative deformation lemma~\ref{lemma:quantitative-deformation-subset} there exists a flow $\eta : [0, 2 \epsilon] \times H^2(\R) \to H^2(\R)$ which leaves $\{ |J_\beta - H_\beta| \geq 2 \epsilon \} \cup \{ \dist(\cdot,S) > 1/2 \}$ fixed, such that $J_\beta(\eta(\cdot, u))$ is decreasing and $u \in S$, $J_\beta(u) \leq H_\beta + \epsilon$ implies $J_\beta(\eta(2 \epsilon,u)) \leq H_\beta - \epsilon$.
+
+By differentiability of $H_\beta$, there is a $\tilde\beta < \beta$ such that
+\[
+\frac{H_{\tilde\beta} - H_\beta}{\beta - \tilde\beta} \leq - H'_\beta + 1/4,
+\quad
+H_{\tilde\beta} + (\beta-\tilde\beta) / 8 \leq H_\beta + \epsilon.
+\]
+By definition of $H_{\tilde\beta}$, there is an admissible path $\tilde\gamma$ with
+\[
+\sup_t J_{\tilde\beta} (\tilde\gamma(t)) \leq H_{\tilde\beta} + (\beta - \tilde\beta)/8.
+\]
+For every $t \in [0,1]$ with $J_\beta(\tilde\gamma(t)) \geq H_\beta - (\beta-\tilde\beta)/8$, one has
+\[
+\frac12 ||\tilde\gamma(t)'||_2^2
+=
+\frac{J_{\tilde\beta}(\tilde\gamma(t)) - J_\beta(\tilde\gamma(t))}{\beta - \tilde\beta}
+\leq
+%\frac{H_{\tilde\beta} + (\beta - \tilde\beta)/8 - (H_\beta - (\beta-\tilde\beta)/8)}{\beta - \tilde\beta}
+%=
+\frac{H_{\tilde\beta} - H_\beta}{\beta - \tilde\beta} + \frac14
+\leq
+- H'_\beta + \frac12,
+\]
+i.e. $\tilde\gamma(t) \in S$ as well as
+\[
+J_\beta(\tilde\gamma(t)) \leq J_{\tilde\beta}(\tilde\gamma(t)) \leq H_{\tilde\beta} + (\beta - \tilde\beta)/8 \leq H_\beta + \epsilon.
+\]
+Thus, applying the final time map of the flow $\eta$ to $\tilde\gamma$, we obtain an admissible path which satisfies
+\[
+J_\beta(\eta(2\epsilon,\tilde\gamma(t))) \leq H_\beta - \epsilon
+\]
+for every $t$, which contradicts the definition of $H_\beta$.
+\end{proof}
+%\textbf{why use a derivative of $H_\beta$ and not just a finite difference at a point where it is left continuous?}
+
+\section{Non-triviality of the weak limit}
+The sequence obtained in the last lemma satisfies
+\[
+\frac12 ||v_n''||_2^2  = J_\beta(v_n) + \beta ||v_n'||_2^2 - \int V(v_n) \leq C + o(1).
+\]
+Furthermore, $v_n$ cannot converge to $0$ uniformly, as in such case, by the proof of Lemma~\ref{lemma:J-beta-near-zero}, one would have
+\[
+\epsilon ||v_n||^2 \leq J_\beta(v_n) = H_\beta + o(1)
+\]
+for $n$ large enough, and in particular $||v_n||_2 = O(1)$. As $J_\beta'(v_n) \to 0$,
+\[
+\begin{split}
+H_\beta
+&= J_\beta(v_n) + o(1)\\
+&= J_\beta(v_n) - \frac12 \< J_\beta'(v_n), v_n \> + o(1)\\
+&= \int_\R (V(v_n) - \frac12 V'(v_n) v_n) + o(1)\\
+&= O(||v_n||_4^4 + ||v_n||_3^3) + o(1)\\
+&= O(||v_n||_2^2 (||v_n||_\infty + ||v_n||_\infty^2)) + o(1)\\
+&= o(1),
+\end{split}
+\]
+which is a contradiction.
+
+%%%%%%%%%%
+By the Sobolev embedding theorem, weak convergence in $H^2$ implies pointwise convergence as the evaluation in a point is the composition of the embedding into $C(\R)$ followed by an evaluation, so that it is a continuous linear form. Strong $L^2$ convergence of the derivatives implies local $L^1$ convergence and thus, together with pointwise convergence, locally uniform convergence.
+
+Assume first
+\[
+\limsup_n (\min_x v_n(x)) \geq -1.
+\]
+Then $V(v_n) \geq v_n^2/4$, so that
+\[
+||v_n||_2^2 \leq 4 \int V(v_n) \lesssim J_\beta(v_n) + ||v_n'||_2^2 + ||v_n''||_2^2 < C + o(1).
+\]
+This, together with the previously established boundedness of $||v_n'||_2$ and $||v_n''||_2$ shows that $(v_n)$ is bounded in $H^2$. One would be tempted to extract a weakly convergent subsequence, but first one should modify the $v_n$'s in the following way:
+\[
+w_n := \tau_{d_n} v_n, \quad d_n \ \text{such that}\  v_n(d_n) = \min_x v_n(x).
+\]
+Recall that $v_n$ was bounded away from zero in the supremum norm (possibly on a subsequence). Thus, if $w_n \rightharpoondown w$, then $w(0) \neq 0$, as point evaluations are weakly continuous. For the same reason, $w_n \geq 1$.
+
+Now, as by Lemma~\ref{lemma:ps} and for some $d'_n$
+\[
+J_\beta'(w_n) = \tau_{d'_n} J_\beta'(v_n) \to 0
+\]
+strongly, for a test function $\phi \in H^2$,
+\[
+\< J_\beta'(w), \phi \> =
+\underbrace{\< w'', \phi'' \>}_{= \lim \< w_n'', \phi'' \>}
+- \beta
+\underbrace{\< w', \phi' \>}_{=\lim \< w_n', \phi' \>}
++
+\underbrace{\int V'(w) \phi}_{=\lim \int V'(w_n) \phi}
+= \lim \< J_\beta'(w_n), \phi \>
+= 0.
+\]
+The equality for $\int V'(w) \phi$ is valid because $w_n$ is uniformly bounded in the supremum norm, so that
+\[
+\int (V'(w_n) - V'(w)) \phi \lesssim \int |w_n - w| |\phi| \to 0.
+\]
+As $w$ is bounded away from $-2$, it is actually a solution of (\ref{eq:critical-point}) and thus a (nontrivial) classical solution of (\ref{eq:basic}).
+
+The case
+\[
+\limsup_n (\min_x v_n(x)) < -1
+\]
+is somewhat more complicated. $v_n$ is not necessarily bounded in $L^2(\R)$. Still, the first and second derivatives are bounded in $L^2(\R)$, and the shifted functions
+\[
+w_n := \tau_{d_n} v_n, \quad d_n \ \text{smallest number such that}\  v_n(d_n) = -1
+\]
+are bounded in $L^2(-\infty,0)$. Consider their weak limit $w$ with respect to the scalar product
+\[
+\<\phi,\psi\>_0=\int_\R \phi'' \psi'' + \int_\R \phi' \psi' + \int_{-\infty}^0 \phi \psi.
+\]
+Note that, as $w(0)=-1$, $w'$ determines $w$ uniquely also in $(0,\infty)$, although $w$ may not lie in $L^2(\R)$. Still, it lies in $L^2_\mathrm{loc}(\R)$, so that the classical regularity theory applies, $w \in H^4(-\infty,0)$, and it is a classical solution of
+\begin{equation}
+\label{eq:basic-beta}
+w'''' + \beta w'' + V'(w) = 0.
+\end{equation}
+on $\R$. Multiplying the equation by $w'$, one obtains
+\[
+\left( w' w''' - \frac12 (w'')^2 + \frac\beta2 (w')^2 + V(w) \right)' = 0.
+\]
+The expression in the parentheses is constant, taking the limit for $x \to -\infty$, one has
+\begin{equation}
+\label{eq:noether}
+w' w''' - \frac12 (w'')^2 + \frac\beta2 (w')^2 + V(w) = 0
+\end{equation}
+as $H^4 \subset C^3_0$. Assume that $w(x) \leq -2$ for some $x$. Then there is either a local minimum below $-2$ at some $x_0$ or $w$ stays below $-2$ for $x>x_0$ for some $x_0$. In the latter case, $w''$ satisfies a wave equation, so that it either oscillates (which would contradict $w''\in L^2$) or is identically zero. But if $w''=0$, $w'$ is constant. If $w' \neq 0$, $w' \not\in L^2$, a contradiction, so that $w'$ is also zero, and again there exists a local minimum at some $x_0$.
+
+In such a case, (\ref{eq:noether}) implies $w''(x_0)=w'(x_0)=0$ and, as $x_0$ is a minimum, $w'''(x_0)=0$. The equation (\ref{eq:basic-beta}) gives a locally Lipschitz expression for the derivatives, so that its solution is unique and must hence be identically equal to $w(x_0)$, which is a contradiction (as, for example, $w(0)=-1$).
+
+We have shown that $w > -2$. This implies that $w$ is a classical solution of (\ref{eq:basic}), as it coincides with (\ref{eq:basic-beta}) in this range.
+
+\section{Homoclinicity}
+A homoclinic solution is by definition a solution of an ODE that approaches the same equilibrium for $t \to \pm \infty$.
+
+We wish to show that $w$, as constructed at the end of the preceding section, converges to $0$ as $x\to\infty$.
+The strong convergence of $w_n'$ implies uniform convergence of $w_n$ on bounded sets, so that
+\[
+\int_{-R}^R V(w)
+=
+\lim_n \int_{-R}^R V(w_n)
+\leq
+\sup_n \int_\R V(w_n)
+\leq C
+\]
+by Lemma~\ref{lemma:ps}. Furthermore, $w' \in H^1(\R) \subset C_0(\R)$, so that $w$ can only make a finite number of jumps between the wells at $0$ and $-2$, so that as $x\to\infty$, either $w(x) \to 0$ or $w(x) \to -2$. In the former case we are done. In the latter case, observe that $V(-2+\epsilon) > \epsilon^2/2$ for small $\epsilon$, so that from $\int V < \infty$ one deduces $w+2 \in L^2(0,\infty)$. But then, as $w$ is also bounded and by (\ref{eq:basic}), $w+2 \in H^4(0,\infty)$, so that $w', w'', w''' \in C_0$, i.e.
+\[
+(w,w',w'',w''') \to (-2,0,0,0).
+\]
+Informally, by the Hartman-Grobman theorem, $(w,w',w'',w''')$ must lie in the stable manifold of $(-2,0,0,0)$, which is two-dimensional and in which the dynamics is essentially a whirlpool falling into the equilibrium point, so that $w+2$ will inverse the sign at some point, which contradicts $w>-2$.
+
+\begin{thebibliography}{9}
+\bibitem[SvdB]{svdb}
+D. Smets, J. B. van den Berg,
+\emph{Homoclinic solutions for Swift-Hohenberg and Suspension Bridge Type Equations},
+J. Differential Equations {\bf 184} (2002), 78--96.
+
+\bibitem[Willem]{willem}
+M. Willem, \emph{Minimax theorems}, Birkhäuser, Basel, 1996.
+
+\end{thebibliography}
+
+
+\end{spacing}
+\end{document}
+
+%<!-- Local IspellDict: american -->
